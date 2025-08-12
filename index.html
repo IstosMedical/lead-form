@@ -3,105 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>ISTOS Lead Submission</title>
-  <style>
-  
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 40px;
-  background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
-              url('OLC2.png') no-repeat center center fixed;
-  background-size: cover;
-}
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
+                url('OLC2.png') no-repeat center center fixed;
+    background-size: cover;
+  }
 
-    form {
-      max-width: 600px;
-      margin: auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .half-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .floating-button {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background-color: #0078D7;
-      color: white;
-      border: none;
-      padding: 15px 25px;
-      font-size: 16px;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    <div class="half-row">
-  <div>
-    <label>Engineer Name</label>
-    <input type="text" name="engineer" required>
-  </div>
-
-  <div>
-    <label>Region</label>
-    <select name="region" required>
-      <option value="">-- Select Region --</option>
-      <option value="North">North</option>
-      <option value="South">South</option>
-      <option value="East">East</option>
-      <option value="West">West</option>
-    </select>
-  </div>
-</div>
-
-<div class="half-row">
-  <div>
-    <label>Contact Name</label>
-    <input type="text" name="contactName" required>
-  </div>
-
-  <div>
-    <label>Contact Number</label>
-    <input type="tel" name="contactNumber" required>
-  </div>
-</div>
-    
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #cce4ff;
-      margin: 0;
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
 
   .logo {
     display: block;
@@ -113,35 +32,35 @@ body {
     transition: transform 0.3s ease;
   }
 
-.logo:hover {
-  transform: scale(1.05);
-}
+  .logo:hover {
+    transform: scale(1.05);
+  }
 
-    h2 {
-      text-align: center;
-      color: #2c3e50;
-      margin-bottom: 10px;
-    }
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
 
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: 600;
-      color: #34495e;
-    }
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #34495e;
+  }
 
-    input, textarea, select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 14px;
-    }
+  input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
 
   button {
     margin-top: 20px;
-    width: 200px;
+    width: 100%;
     padding: 12px;
     background-color: #2980b9;
     color: white;
@@ -151,24 +70,40 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
   }
-  
+
   button:hover {
     background-color: #1c5980;
     transform: scale(1.03);
   }
 
-    .success {
-      text-align: center;
-      color: green;
-      margin-top: 15px;
+  .success {
+    text-align: center;
+    color: green;
+    margin-top: 15px;
+  }
+
+  .error {
+    text-align: center;
+    color: red;
+    margin-top: 15px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .container {
+      margin: 10px;
+      padding: 20px;
     }
 
-    .error {
-      text-align: center;
-      color: red;
-      margin-top: 15px;
+    input, select, textarea {
+      font-size: 16px;
     }
-  </style>
+
+    button {
+      width: 100%;
+    }
+  }
+</style>
+
 </head>
 <body>
   <div class="container">
