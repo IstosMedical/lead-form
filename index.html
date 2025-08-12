@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Lead Submission Form</h2>
+
+<form id="leadForm">
+  Engineer Name: <input type="text" name="engineer"><br><br>
+  Contact Number: <input type="text" name="contact"><br><br>
+  Email: <input type="email" name="email"><br><br>
+  Location: <input type="text" name="location"><br><br>
+  Requirement: <input type="text" name="requirement"><br><br>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+document.getElementById("leadForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+  const params = new URLSearchParams();
+  for (const pair of formData.entries()) {
+    params.append(pair[0], pair[1]);
+  }
+
+  fetch("https://script.google.com/macros/s/AKfycbyeQd5CDZyhMsd20AO_aD1K-ps8nu3dGuQ_6ctz6R89L3rss-aZvgSICQ9ZLdNj95jBQg/exec", {
+    method: "POST",
+    body: params
+  })
+  .then(response => response.text())
+  .then(data => {
+    alert(data);
+    this.reset();
+  })
+  .catch(error => {
+    alert("❌ Submission failed: " + error);
+  });
+});
+</script>
+
+</body>
+</html>
