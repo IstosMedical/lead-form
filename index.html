@@ -13,6 +13,12 @@
   <button type="submit">Submit</button>
 </form>
 
+  function doPost(e) {
+  return ContentService
+    .createTextOutput("✅ Lead submitted successfully!")
+    .setMimeType(ContentService.MimeType.TEXT);
+}
+
 <script>
 document.getElementById("leadForm").addEventListener("submit", function(e) {
   e.preventDefault();
