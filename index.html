@@ -1,46 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ISTOS Lead Submission</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      max-width: 180px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #34495e;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1c5980;
+    }
+
+    .success {
+      text-align: center;
+      color: green;
+      margin-top: 15px;
+    }
+
+    .error {
+      text-align: center;
+      color: red;
+      margin-top: 15px;
+    }
+  </style>
+</head>
 <body>
+  <div class="container">
+    <img src="https://istosmedical.com/assets/img/logo.png" alt="ISTOS Medical Logo" class="logo">
+    <h2>Lead Submission Form</h2>
+    <form id="leadForm">
+      <label>Engineer Name</label>
+      <input type="text" name="engineer" required>
 
-<h2>Lead Submission Form</h2>
+      <label>Institution</label>
+      <input type="text" name="institution" required>
 
-<form id="leadForm">
-  Engineer Name: <input type="text" name="engineer"><br><br>
-  Institution: <input type="text" name="institution"><br><br>
-  Equipment: <input type="text" name="equipment"><br><br>
-  Region: <input type="text" name="region"><br><br>
-  Address: <textarea name="address"></textarea><br><br>
-  Contact Name: <input type="text" name="contactName"><br><br>
-  Contact Number: <input type="text" name="contactNumber"><br><br>
-  Due Date: <input type="date" name="dueDate"><br><br>
-  Special Request: <textarea name="specialRequest"></textarea><br><br>
-  <button type="submit">Submit</button>
-</form>
+      <label>Equipment</label>
+      <input type="text" name="equipment" required>
 
+      <label>Region</label>
+      <select name="region" required>
+        <option value="">-- Select Region --</option>
+        <option value="North">North</option>
+        <option value="South">South</option>
+        <option value="East">East</option>
+        <option value="West">West</option>
+        <option value="Central">Central</option>
+        <option value="North-East">North-East</option>
+      </select>
 
-<script>
-document.getElementById("leadForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+      <label>Address</label>
+      <textarea name="address" rows="3" required></textarea>
 
-  const formData = new FormData(this);
-  const params = new URLSearchParams();
-  for (const pair of formData.entries()) {
-    params.append(pair[0], pair[1]);
-  }
+      <label>Contact Name</label>
+      <input type="text" name="contactName" required>
 
-  fetch("https://script.google.com/macros/s/AKfycbyeQd5CDZyhMsd20AO_aD1K-ps8nu3dGuQ_6ctz6R89L3rss-aZvgSICQ9ZLdNj95jBQg/exec", {
-    method: "POST",
-    body: params
-  })
-  .then(response => response.text())
-  .then(data => {
-    alert(data);
-    this.reset();
-  })
-  .catch(error => {
-    alert("❌ Submission failed: " + error);
-  });
-});
-</script>
+      <label>Contact Number</label>
+      <input type="tel" name="contactNumber" required>
+
+      <label>Due Date</label>
+      <input type="date" name="dueDate" required>
+
+      <label>Special Request</label>
+      <textarea name="specialRequest" rows="3"></textarea>
+
+      <button type="submit">Submit Lead</button>
+    </form>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    document.getElementById("leadForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const params = new URLSearchParams();
+      for (const pair of formData.entries()) {
+        params.append(pair[0], pair[1]);
+      }
+
+      fetch("https://script.google.com/macros/s/AKfycbyeQd5CDZyhMsd20AO_aD1K-ps8nu3dGuQ_6ctz6R89L3rss-aZvgSICQ9ZLdNj95jBQg/exec", {
+        method: "POST",
+        body: params
+      })
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("message").innerHTML = `<div class="success">${data}</div>`;
+        this.reset();
+      })
+      .catch(error => {
+        document.getElementById("message").innerHTML = `<div class="error">❌ Submission failed: ${error}</div>`;
+      });
+    });
+  </script>
 </body>
 </html>
