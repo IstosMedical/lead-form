@@ -4,108 +4,167 @@
   <meta charset="UTF-8">
   <title>ISTOS Lead Submission</title>
   <style>
+
+    .half-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+    <div class="half-row">
+  <div>
+    <label>Engineer Name</label>
+    <input type="text" name="engineer" required>
+  </div>
+
+  <div>
+    <label>Region</label>
+    <select name="region" required>
+      <option value="">-- Select Region --</option>
+      <option value="North">North</option>
+      <option value="South">South</option>
+      <option value="East">East</option>
+      <option value="West">West</option>
+    </select>
+  </div>
+</div>
+
+<div class="half-row">
+  <div>
+    <label>Contact Name</label>
+    <input type="text" name="contactName" required>
+  </div>
+
+  <div>
+    <label>Contact Number</label>
+    <input type="tel" name="contactNumber" required>
+  </div>
+</div>
+
+    
     body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      background-color: #f9f9f9;
+      font-family: 'Segoe UI', sans-serif;
+      background: #cce4ff;
+      margin: 0;
+      padding: 20px;
     }
 
-    form {
+    .container {
       max-width: 600px;
       margin: auto;
       background: #fff;
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+  .logo {
+    display: block;
+    margin: 0 auto 30px;
+    max-width: 180px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+  }
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 10px;
     }
 
     label {
       display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #34495e;
     }
 
-    input, select, textarea {
+    input, textarea, select {
       width: 100%;
       padding: 10px;
-      margin-bottom: 20px;
+      margin-top: 5px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 6px;
+      font-size: 14px;
     }
 
-    .half-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .floating-button {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background-color: #0078D7;
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #2980b9;
       color: white;
       border: none;
-      padding: 15px 25px;
+      border-radius: 6px;
       font-size: 16px;
-      border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
-    .floating-button:hover {
-      background-color: #005fa3;
+    button:hover {
+      background-color: #1c5980;
+    }
+
+    .success {
+      text-align: center;
+      color: green;
+      margin-top: 15px;
+    }
+
+    .error {
+      text-align: center;
+      color: red;
+      margin-top: 15px;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <img src="OLC.png" alt="ISTOS Medical Logo" class="logo">
+    <h2>Lead Submission Form</h2>
+    <form id="leadForm">
+      <label>Engineer Name</label>
+      <input type="text" name="engineer" required>
 
-  <form id="leadForm">
-    <div class="half-row">
-      <div>
-        <label>Engineer Name</label>
-        <input type="text" name="engineer" required>
-      </div>
-      <div>
-        <label>Region</label>
-        <select name="region" required>
-          <option value="">-- Select Region --</option>
-          <option value="North">North</option>
-          <option value="South">South</option>
-          <option value="East">East</option>
-          <option value="West">West</option>
-        </select>
-      </div>
-    </div>
+      <label>Institution</label>
+      <input type="text" name="institution" required>
 
-    <label>Institution</label>
-    <input type="text" name="institution" required>
+      <label>Equipment</label>
+      <input type="text" name="equipment" required>
 
-    <label>Equipment</label>
-    <input type="text" name="equipment" required>
+      <label>Region</label>
+      <select name="region" required>
+        <option value="">-- Select Region --</option>
+        <option value="North">North</option>
+        <option value="South">South</option>
+        <option value="East">East</option>
+        <option value="West">West</option>
+      </select>
 
-    <label>Address</label>
-    <textarea name="address" rows="3" required></textarea>
+      <label>Address</label>
+      <textarea name="address" rows="3" required></textarea>
 
-    <div class="half-row">
-      <div>
-        <label>Contact Name</label>
-        <input type="text" name="contactName" required>
-      </div>
-      <div>
-        <label>Contact Number</label>
-        <input type="tel" name="contactNumber" required>
-      </div>
-    </div>
+      <label>Contact Name</label>
+      <input type="text" name="contactName" required>
 
-    <label>Due Date</label>
-    <input type="text" name="dueDate" placeholder="dd - mm - yyyy" required>
+      <label>Contact Number</label>
+      <input type="tel" name="contactNumber" required>
 
-    <label>Special Request</label>
-    <textarea name="specialRequest" rows="3"></textarea>
-  </form>
+      <label>Due Date</label>
+      <input type="date" name="dueDate" required>
 
-  <button class="floating-button" onclick
+      <label>Special Request</label>
+      <textarea name="specialRequest" rows="3"></textarea>
+
+      <button type="submit">Submit Lead</button>
+    </form>
+    <div id="message"></div>
+  </div>
 
   <script>
     document.getElementById("leadForm").addEventListener("submit", function(e) {
