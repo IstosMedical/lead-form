@@ -5,7 +5,7 @@
   <title>ISTOS Lead Submission</title>
   <style>
 
-ody {
+body {
       font-family: Arial, sans-serif;
       margin: 40px;
       background-color: #f9f9f9;
@@ -139,7 +139,7 @@ ody {
 
     button {
       margin-top: 20px;
-      width: 100%;
+      width: 200px;
       padding: 12px;
       background-color: #2980b9;
       color: white;
@@ -172,10 +172,10 @@ ody {
     <h2>Lead Submission Form</h2>
     <form id="leadForm">
       <label>Engineer Name</label>
-      <input type="text" name="engineer" required>
+      <input type="text" name="engineer" required maxlength="50" pattern="[A-Za-z ]{1,50}" title="Enter alphabetic characters only (max 50)">
 
       <label>Institution</label>
-      <input type="text" name="institution" required>
+      <input type="text" name="Institution" required maxlength="50" pattern="[A-Za-z ]{1,50}" title="Enter alphabetic characters only (max 50)">
 
       <label>Equipment</label>
       <input type="text" name="equipment" required>
@@ -196,7 +196,7 @@ ody {
       <input type="text" name="contactName" required>
 
       <label>Contact Number</label>
-      <input type="tel" name="contactNumber" required>
+      <input type="tel" name="contactNumber" required maxlength="10" pattern="[0-9]{10}" title="Enter a 10-digit mobile number">
 
       <label>Due Date</label>
       <input type="date" name="dueDate" required>
