@@ -40,6 +40,10 @@ body {
       gap: 20px;
     }
 
+<div style="text-align: center;">
+  <button type="submit">Submit Lead</button>
+</div>
+
     .floating-button {
       position: fixed;
       bottom: 30px;
@@ -137,21 +141,23 @@ body {
       font-size: 14px;
     }
 
-    button {
-      margin-top: 20px;
-      width: 200px;
-      padding: 12px;
-      background-color: #2980b9;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #1c5980;
-    }
+  button {
+    margin-top: 20px;
+    width: 200px;
+    padding: 12px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #1c5980;
+    transform: scale(1.03);
+  }
 
     .success {
       text-align: center;
