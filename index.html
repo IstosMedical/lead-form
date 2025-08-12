@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>ISTOS Lead Submission</title>
   <style>
-
+  
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -42,10 +42,6 @@ body {
       grid-template-columns: 1fr 1fr;
       gap: 20px;
     }
-
-<div style="text-align: center;">
-  <button type="submit">Submit Lead</button>
-</div>
 
     .floating-button {
       position: fixed;
@@ -90,7 +86,6 @@ body {
     <input type="tel" name="contactNumber" required>
   </div>
 </div>
-
     
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -213,8 +208,12 @@ body {
       <label>Special Request</label>
       <textarea name="specialRequest" rows="3"></textarea>
 
-      <button type="submit">Submit Lead</button>
+      <!-- ✅ Centered Submit Button -->
+      <div style="text-align: center; margin-top: 20px;">
+        <button type="submit">Submit Lead</button>
+      </div>
     </form>
+
     <div id="message"></div>
   </div>
 
@@ -233,6 +232,7 @@ body {
       })
       .then(response => response.text())
       .then(data => {
+        alert("Details sent to ISTOS Mailbox"); // ✅ Confirmation popup
         document.getElementById("message").innerHTML = `<div class="success">${data}</div>`;
         this.reset();
       })
@@ -240,10 +240,6 @@ body {
         document.getElementById("message").innerHTML = `<div class="error">❌ Submission failed: ${error}</div>`;
       });
     });
-
-      function showConfirmation() {
-    alert("Details sent to ISTOS Mailbox");
-  }
   </script>
 </body>
 </html>
