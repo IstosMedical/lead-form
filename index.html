@@ -159,13 +159,47 @@
       <textarea name="specialRequest" rows="3"></textarea>
 
       <!-- ✅ Centered Submit Button -->
+      
       <div style="text-align: center; margin-top: 20px;">
       <button id="submitBtn"><span id="btnText">Submit Lead</span></button>
       <div id="spinner" style="display:none;">⏳</div>
       <div id="message"></div>
 
-       <script>
-  // Photo preview logic
+  <script>
+  document.getElementById("leadForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+
+  submitBtn.disabled = true;
+  btnText.textContent = "Submitting...";
+  spinner.style.display = "inline";
+
+  fetch("https://script.google.com/macros/s/AKfycbyeQd5CDZyhMsd20AO_aD1K-ps8nu3dGuQ_6ctz6R89L3rss-aZvgSICQ9ZLdNj95jBQg/exec", {
+    method: "POST",
+    body: formData
+  })
+  .then(response => response.text())
+  .then(data => {
+    alert("✅ Lead submitted successfully!");
+    document.getElementById("message").innerHTML = `<div class="success">${data}</div>`;
+    form.reset();
+    document.getElementById("photoPreview").style.display = "none";
+    submitBtn.disabled = false;
+    btnText.textContent = "Submit Lead";
+    spinner.style.display = "none";
+  })
+  .catch(error => {
+    document.getElementById("message").innerHTML = `<div class="error">❌ Submission failed: ${error}</div>`;
+    submitBtn.disabled = false;
+    btnText.textContent = "Submit Lead";
+    spinner.style.display = "none";
+  });
+});
+  </Script>
+    
+  <script>
   document.getElementById("photoInput").addEventListener("change", function() {
     const file = this.files[0];
     const preview = document.getElementById("photoPreview");
@@ -181,46 +215,8 @@
       preview.style.display = "none";
     }
   });
-
-  // Form submission logic
-  document.getElementById("leadForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const form = e.target;
-    const formData = new FormData(form);
-
-    const submitBtn = document.getElementById("submitBtn");
-    const btnText = document.getElementById("btnText");
-    const spinner = document.getElementById("spinner");
-
-    if (submitBtn) submitBtn.disabled = true;
-    if (btnText) btnText.textContent = "Submitting...";
-    if (spinner) spinner.style.display = "inline";
-
-    fetch("https://script.google.com/macros/s/AKfycbyeQd5CDZyhMsd20AO_aD1K-ps8nu3dGuQ_6ctz6R89L3rss-aZvgSICQ9ZLdNj95jBQg/exec", {
-      method: "POST",
-      body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-      alert("✅ Lead submitted successfully!");
-      document.getElementById("message").innerHTML = `<div class="success">${data}</div>`;
-      form.reset();
-      document.getElementById("photoPreview").style.display = "none";
-      if (submitBtn) submitBtn.disabled = false;
-      if (btnText) btnText.textContent = "Submit Lead";
-      if (spinner) spinner.style.display = "none";
-    })
-    .catch(error => {
-      document.getElementById("message").innerHTML = `<div class="error">❌ Submission failed: ${error}</div>`;
-      if (submitBtn) submitBtn.disabled = false;
-      if (btnText) btnText.textContent = "Submit Lead";
-      if (spinner) spinner.style.display = "none";
-    });
-  });
 </script>
 
 </body>
 </html>
-
 
