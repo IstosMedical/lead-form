@@ -151,12 +151,15 @@
 
       <label>🌍 Customer Address</label>
       <textarea name="address" rows="2" required></textarea>
+      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. full address with pincode</small>
 
       <label>👷 Kind Attn Name</label>
       <input type="text" name="kindAttnName" required maxlength="100" pattern="[A-Za-z ]{1,50}" title="Enter alphabetic characters only (max 100)">
+      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. point of contact in the hospital | Laboratory</small>
 
       <label>📞 Contact Number</label>
       <input type="tel" name="contactNumber" required maxlength="10" pattern="[0-9]{10}" title="Enter a 10-digit mobile number">
+      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. 10 digit numbers only</small>
       
       <label>🛠️ Equipment Details</label>
       <textarea name="equipment" rows="5" required></textarea>
