@@ -150,11 +150,9 @@
       <textarea name="equipment" rows="5" required></textarea>
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. Slide Strainer | Bone Band Saw | Tissue Processor | Grossing Station | Microtome </small>
 
-      <label>📷 Equipment Photo Link (optional)</label>
-      <input type="url" name="photoLink" placeholder="Paste Google Drive or WhatsApp image link" style="width: 100%;" maxlength="300">
-      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 15px;">
-      Tip: Upload the photo to <a href="https://drive.google.com" target="_blank">Google Drive</a> or send via WhatsApp, then paste the link here.
-      </small>
+      <label>📷 Upload Equipment Photo (optional)</label>
+      <input type="file" name="photo" accept="image/*">
+      <small style="color: grey;">You can select a photo from your gallery or take one using your camera.</small>
 
       <label>🏢 Special Request - any from the customer</label>
       <textarea name="specialRequest" rows="3"></textarea>
