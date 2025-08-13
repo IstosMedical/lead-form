@@ -127,11 +127,22 @@
 <h3 style="text-align: center; margin-top: 1; margin-bottom: 20px; color: #3b5998;">Budgetary Quotation Form</h3>
 
     <form id="leadForm">
-      <label>👷 Sales Person</label>
-      <input type="text" name="engineer" required maxlength="100" pattern="[A-Za-z ]{1,50}" title="Enter alphabetic characters only (max 100)">
-
-      <label>📧 Email</label>
-      <input type="email" name="engineerEmail" required title="Enter a valid email address">
+    <label for="salesPerson">👷 Sales Person</label>
+    <select id="salesPerson" name="engineer" required>
+      <option value="">Select Sales Person</option>
+      <option value="Mayuresh Shrikanth Kadam">Mayuresh</option>
+      <option value="Nitin Yadav">Nitin</option>
+      <option value="Sarfaraz Khan">Sarfaraz</option>
+      <option value="Vivek Siddharth Meshram">vivek</option>
+    </select>
+    
+    <label for="salesEmail">📧 Email</label>
+    <select id="salesEmail" name="engineerEmail" required>
+      <option value="">Select Email</option>
+      <option value="mayuresh@istos.in">mayuresh@istos.in</option>
+      <option value="nitin@istos.in">nitin@istos.in</option>
+      <option value="s.khan@istos.in">s.khan@istos.in</option>
+    </select>
    
       <label>🏥 Institution Name</label>
       <input type="text" name="institution" required maxlength="250" pattern="[A-Za-z ]{1,50}" title="Enter alphabetic characters only (max 250)">
@@ -212,5 +223,22 @@
   });
 </script>
 
+  <script>
+  const nameToEmail = {
+    "Mayuresh": "mayuresh@istos.in",
+    "Nitin": "nitin@istos.in",
+    "Sarfaraz": "s.khan@istos.in"
+  };
+
+  const salesPersonSelect = document.getElementById("salesPerson");
+  const salesEmailSelect = document.getElementById("salesEmail");
+
+  salesPersonSelect.addEventListener("change", function () {
+    const selectedName = this.value;
+    salesEmailSelect.value = nameToEmail[selectedName] || "";
+  });
+</script>
+
+  
 </body>
 </html>
