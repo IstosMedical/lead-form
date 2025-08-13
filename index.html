@@ -176,6 +176,11 @@
       <label>🏢 Special Request - any from the customer</label>
       <textarea name="specialRequest" rows="3"></textarea>
 
+      let photoLink = e.parameter.photoLink || "";
+      if (photoLink.includes("whatsapp.com") || photoLink.includes("wa.me")) {
+      photoLink = "WhatsApp Image: " + photoLink;
+}
+
       <!-- ✅ Centered Submit Button -->
       <div style="text-align: center; margin-top: 20px;">
       <button type="submit" id="submitBtn">
