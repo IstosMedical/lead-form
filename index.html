@@ -143,37 +143,57 @@
 
       <!-- ✅ Centered Submit Button -->
       <div style="text-align: center; margin-top: 20px;">
-        <button type="submit">Submit Lead</button>
+      <button type="submit" id="submitBtn">
+          <span id="btnText">Submit Lead</span>
+          <span id="spinner" style="display: none; margin-left: 8px;">⏳</span>
+      </button>
+
       </div>
     </form>
 
     <div id="message"></div>
   </div>
 
-  <script>
-    document.getElementById("leadForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
-      const params = new URLSearchParams();
-      for (const pair of formData.entries()) {
-        params.append(pair[0], pair[1]);
-      }
+<script>
+  document.getElementById("leadForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-      fetch("https://script.google.com/macros/s/AKfycbyeQd5CDZyhMsd20AO_aD1K-ps8nu3dGuQ_6ctz6R89L3rss-aZvgSICQ9ZLdNj95jBQg/exec", {
-        method: "POST",
-        body: params
-      })
-      .then(response => response.text())
-      .then(data => {
-        alert("Details sent to ISTOS Mailbox"); // ✅ Confirmation popup
-        document.getElementById("message").innerHTML = `<div class="success">${data}</div>`;
-        this.reset();
-      })
-      .catch(error => {
-        document.getElementById("message").innerHTML = `<div class="error">❌ Submission failed: ${error}</div>`;
-      });
+    const submitBtn = document.getElementById("submitBtn");
+    const btnText = document.getElementById("btnText");
+    const spinner = document.getElementById("spinner");
+
+    submitBtn.disabled = true;
+    btnText.textContent = "Submitting...";
+    spinner.style.display = "inline";
+
+    const formData = new FormData(this);
+    const params = new URLSearchParams();
+    for (const pair of formData.entries()) {
+      params.append(pair[0], pair[1]);
+    }
+
+    fetch("https://script.google.com/macros/s/AKfycbyeQd5CDZyhMsd20AO_aD1K-ps8nu3dGuQ_6ctz6R89L3rss-aZvgSICQ9ZLdNj95jBQg/exec", {
+      method: "POST",
+      body: params
+    })
+    .then(response => response.text())
+    .then(data => {
+      alert("✅ Lead submitted successfully!");
+      document.getElementById("message").innerHTML = `<div class="success">${data}</div>`;
+      this.reset();
+      submitBtn.disabled = false;
+      btnText.textContent = "Submit Lead";
+      spinner.style.display = "none";
+    })
+    .catch(error => {
+      document.getElementById("message").innerHTML = `<div class="error">❌ Submission failed: ${error}</div>`;
+      submitBtn.disabled = false;
+      btnText.textContent = "Submit Lead";
+      spinner.style.display = "none";
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
 
