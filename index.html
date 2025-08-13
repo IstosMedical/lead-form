@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ISTOS Lead Submission</title>
@@ -154,66 +153,64 @@
       <label>📷 Equipment Photo Link (optional)</label>
       <input type="url" name="photoLink" placeholder="Paste Google Drive or WhatsApp image link" style="width: 100%;" maxlength="300">
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 15px;">
-        Tip: Upload the photo to <a href="https://drive.google.com" target="_blank">Google Drive</a> or send via WhatsApp, then paste the link here.
+      Tip: Upload the photo to <a href="https://drive.google.com" target="_blank">Google Drive</a> or send via WhatsApp, then paste the link here.
       </small>
 
       <label>🏢 Special Request - any from the customer</label>
       <textarea name="specialRequest" rows="3"></textarea>
 
       <!-- ✅ Centered Submit Button -->
-      
       <div style="text-align: center; margin-top: 20px;">
-      <button id="submitBtn"><span id="btnText">Submit Lead</span></button>
-      <div id="spinner" style="display:none;">⏳</div>
-      <div id="message"></div>
+      <button type="submit" id="submitBtn">
+          <span id="btnText">Submit Lead</span>
+          <span id="spinner" style="display: none; margin-left: 8px;">⏳</span>
+      </button>
 
-  <script>
+      </div>
+    </form>
+
+    <div id="message"></div>
+  </div>
+
+<script>
   document.getElementById("leadForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  const form = e.target;
-  const formData = new FormData(form);
+    const submitBtn = document.getElementById("submitBtn");
+    const btnText = document.getElementById("btnText");
+    const spinner = document.getElementById("spinner");
 
-  submitBtn.disabled = true;
-  btnText.textContent = "Submitting...";
-  spinner.style.display = "inline";
+    submitBtn.disabled = true;
+    btnText.textContent = "Submitting...";
+    spinner.style.display = "inline";
 
-  fetch("https://script.google.com/macros/s/AKfycbyeQd5CDZyhMsd20AO_aD1K-ps8nu3dGuQ_6ctz6R89L3rss-aZvgSICQ9ZLdNj95jBQg/exec", {
-    method: "POST",
-    body: formData
-  })
-  .then(response => response.text())
-  .then(data => {
-    alert("✅ Lead submitted successfully!");
-    document.getElementById("message").innerHTML = `<div class="success">${data}</div>`;
-    form.reset();
-    document.getElementById("photoPreview").style.display = "none";
-    submitBtn.disabled = false;
-    btnText.textContent = "Submit Lead";
-    spinner.style.display = "none";
-  })
-  });
-});
-  </Script>
-    
-  <script>
-  document.getElementById("photoInput").addEventListener("change", function() {
-    const file = this.files[0];
-    const preview = document.getElementById("photoPreview");
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        preview.src = e.target.result;
-        preview.style.display = "block";
-      };
-      reader.readAsDataURL(file);
-    } else {
-      preview.style.display = "none";
+    const formData = new FormData(this);
+    const params = new URLSearchParams();
+    for (const pair of formData.entries()) {
+      params.append(pair[0], pair[1]);
     }
+
+    fetch("https://script.google.com/macros/s/AKfycbyeQd5CDZyhMsd20AO_aD1K-ps8nu3dGuQ_6ctz6R89L3rss-aZvgSICQ9ZLdNj95jBQg/exec", {
+      method: "POST",
+      body: params
+    })
+    .then(response => response.text())
+    .then(data => {
+      alert("✅ Lead submitted successfully!");
+      document.getElementById("message").innerHTML = `<div class="success">${data}</div>`;
+      this.reset();
+      submitBtn.disabled = false;
+      btnText.textContent = "Submit Lead";
+      spinner.style.display = "none";
+    })
+    .catch(error => {
+      document.getElementById("message").innerHTML = `<div class="error">❌ Submission failed: ${error}</div>`;
+      submitBtn.disabled = false;
+      btnText.textContent = "Submit Lead";
+      spinner.style.display = "none";
+    });
   });
 </script>
 
 </body>
 </html>
-
