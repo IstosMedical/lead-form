@@ -192,11 +192,6 @@
     btnText.textContent = "Submit Lead";
     spinner.style.display = "none";
   })
-  .catch(error => {
-    document.getElementById("message").innerHTML = `<div class="error">❌ Submission failed: ${error}</div>`;
-    submitBtn.disabled = false;
-    btnText.textContent = "Submit Lead";
-    spinner.style.display = "none";
   });
 });
   </Script>
