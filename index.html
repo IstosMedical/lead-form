@@ -170,46 +170,40 @@
     <div id="message"></div>
   </div>
 
-<script>
+  <script>
   document.getElementById("leadForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const submitBtn = document.getElementById("submitBtn");
-    const btnText = document.getElementById("btnText");
-    const spinner = document.getElementById("spinner");
+  const form = e.target;
+  const formData = new FormData(form);
 
-    submitBtn.disabled = true;
-    btnText.textContent = "Submitting...";
-    spinner.style.display = "inline";
+  submitBtn.disabled = true;
+  btnText.textContent = "Submitting...";
+  spinner.style.display = "inline";
 
-    const formData = new FormData(this);
-    const params = new URLSearchParams();
-    for (const pair of formData.entries()) {
-      params.append(pair[0], pair[1]);
-    }
-
-    fetch("https://script.google.com/macros/s/AKfycbyeQd5CDZyhMsd20AO_aD1K-ps8nu3dGuQ_6ctz6R89L3rss-aZvgSICQ9ZLdNj95jBQg/exec", {
-      method: "POST",
-      body: params
-    })
-    .then(response => response.text())
-    .then(data => {
-      alert("✅ Lead submitted successfully!");
-      document.getElementById("message").innerHTML = `<div class="success">${data}</div>`;
-      this.reset();
-      submitBtn.disabled = false;
-      btnText.textContent = "Submit Lead";
-      spinner.style.display = "none";
-    })
-    .catch(error => {
-      document.getElementById("message").innerHTML = `<div class="error">❌ Submission failed: ${error}</div>`;
-      submitBtn.disabled = false;
-      btnText.textContent = "Submit Lead";
-      spinner.style.display = "none";
-    });
+  fetch("https://script.google.com/macros/s/AKfycbyeQd5CDZyhMsd20AO_aD1K-ps8nu3dGuQ_6ctz6R89L3rss-aZvgSICQ9ZLdNj95jBQg/exec", {
+    method: "POST",
+    body: formData
+  })
+  .then(response => response.text())
+  .then(data => {
+    alert("✅ Lead submitted successfully!");
+    document.getElementById("message").innerHTML = `<div class="success">${data}</div>`;
+    form.reset();
+    document.getElementById("photoPreview").style.display = "none";
+    submitBtn.disabled = false;
+    btnText.textContent = "Submit Lead";
+    spinner.style.display = "none";
+  })
+  .catch(error => {
+    document.getElementById("message").innerHTML = `<div class="error">❌ Submission failed: ${error}</div>`;
+    submitBtn.disabled = false;
+    btnText.textContent = "Submit Lead";
+    spinner.style.display = "none";
   });
-</script>
-
+});
+  </Script>
+    
   <script>
   document.getElementById("photoInput").addEventListener("change", function() {
     const file = this.files[0];
