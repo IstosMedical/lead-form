@@ -169,30 +169,34 @@
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">Tip: Open WhatsApp → Tap and hold the image → Select “Copy Link” or “Share” → Paste the link here.</small>
       
       <label for="cameraUpload">📷 Capture Equipment Photo</label>
-      <input type="file" id="cameraUpload" name="cameraUpload" accept="image/*" capture="environment">
+      <input type="file" id="cameraUpload" name="cameraUpload" accept="image/*" capture="environment" required>
       <small>Tap to open camera and capture photo</small>
-      <div id="cameraPreview" style="margin-top:10px;"></div>     
-      
+      <div id="cameraPreview" style="margin-top:10px;"></div>
+      <input type="hidden" id="cameraBase64" name="cameraBase64">
+
       <div id="imagePreview" style="margin-top:10px;"></div>
 
       <label>🏢 Special Request - any from the customer</label>
       <textarea name="specialRequest" rows="3"></textarea>
 
-      <script>
+<script>
   const cameraInput = document.getElementById("cameraUpload");
   const preview = document.getElementById("cameraPreview");
+  const base64Field = document.getElementById("cameraBase64");
 
   cameraInput.addEventListener("change", function () {
     const file = this.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = function (e) {
+        base64Field.value = e.target.result; // Store base64 string
         preview.innerHTML = `<img src="${e.target.result}" style="max-width:100%; border:1px solid #ccc; padding:5px;">`;
       };
       reader.readAsDataURL(file);
     }
   });
 </script>
+
 
       
 
