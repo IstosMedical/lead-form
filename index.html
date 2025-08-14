@@ -245,14 +245,17 @@
   const photoInput = document.getElementById("photoLink");
   const previewContainer = document.getElementById("imagePreview");
 
-  photoInput.addEventListener("input", () => {
-    const url = photoInput.value.trim();
-    if (url && (url.includes("whatsapp.com") || url.includes("wa.me") || url.includes("http"))) {
-      previewContainer.innerHTML = `<img src="${url}" alt="Preview" style="max-width:100%; border:1px solid #ccc; padding:5px;">`;
-    } else {
-      previewContainer.innerHTML = "";
-    }
-  });
+photoInput.addEventListener("input", () => {
+  const url = photoInput.value.trim();
+  if (url.includes("whatsapp.com") || url.includes("wa.me")) {
+    previewContainer.innerHTML = `<p>✅ WhatsApp link captured. Image preview not available.</p>`;
+  } else if (url.match(/\.(jpeg|jpg|png|gif)$/)) {
+    previewContainer.innerHTML = `<img src="${url}" alt="Preview" style="max-width:100%; border:1px solid #ccc; padding:5px;">`;
+  } else {
+    previewContainer.innerHTML = "";
+  }
+});
+
 </script>
   
 </body>
