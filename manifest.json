@@ -1,6 +1,6 @@
 {
   "name": "ISTOS Lead Submission",
-  "short_name": "ISTOS Leads",
+  "short_name": "ISTOS Quotes",
   "start_url": "/lead-form/",
   "display": "standalone",
   "background_color": "#ffffff",
