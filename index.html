@@ -152,7 +152,7 @@
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. full address with pincode</small>
 
       <label for="cameraBase64">📷 capture business card - optional</label>
-      <input type="file" id="cameraUpload" name="cameraUpload" accept="image/*" capture="environment" >
+      <input type="file" id="cameraUpload2" name="cameraUpload2" accept="image/*" capture="environment" >
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">Tap to open camera to capture business card</small>
       <div id="cameraPreview" style="margin-top:10px;"></div>
       <input type="hidden" id="cameraBase64" name="cameraBase64">
@@ -281,5 +281,17 @@
   });
 </script>
 
+ <script>
+  document.getElementById("cameraUpload2").addEventListener("change", function () {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = function () {
+        document.getElementById("cameraBase64").value = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+</script>
 </body>
 </html>
