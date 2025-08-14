@@ -122,9 +122,7 @@
 <body>
   <div class="container">
     <img src="OLC.png" alt="ISTOS Medical Logo" class="logo">
-
-<h2 style="text-align: center; margin-bottom: 4px;">ISTOS Leads</h2>
-<h3 style="text-align: center; margin-top: 1; margin-bottom: 20px; color: #3b5998;">Budgetary Quotation Form</h3>
+<h3 style="text-align: center; margin-top: 1; margin-bottom: 20px; color: #3b5998;">Budgetary / Spares Quote</h3>
 
     <form id="leadForm">
       
@@ -132,6 +130,7 @@
     <select id="salesPerson" name="engineer" required>
       <option value="">Select Sales Person</option>
       <option value="mayuresh">👔 Mayuresh Shrikanth Kadam</option>
+      <option value="naushad">👔 Naushad</option>
       <option value="nitin">👔 Nitin Yadav</option>
       <option value="sarfaraz">👔 Sarfaraz Khan</option>
     </select>
@@ -139,8 +138,9 @@
     <label for="salesEmail">📧 Email</label>
     <select id="salesEmail" name="engineerEmail" required disabled>
       <option value="">Automode</option>
-      <option value="mayuresh@istos.in">mayuresh@istos.in</option>
-      <option value="nitin@istos.in">nitin@istos.in</option>
+      <option value="mayuresh@istos.in">mayuresh.kadam@istos.in</option>
+      <option value="naushad@istos.in">naushad@istos.in</option>
+      <option value="nitin@istos.in">nitin.yadav@istos.in</option>
       <option value="s.khan@istos.in">s.khan@istos.in</option>
     </select>
    
@@ -152,7 +152,7 @@
       <textarea name="address" rows="2" required></textarea>
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. full address with pincode</small>
 
-      <label for="cameraBase64">📷 capture business card - optional</label>
+      <label for="cameraBase64">📷 Capture B-card / address photo - optional</label>
       <input type="file" id="cameraUpload2" name="cameraUpload2" accept="image/*" capture="environment">
       <input type="hidden" id="cameraBase64_1" name="cameraBase64_1">
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">Tap to open camera to capture business card</small>
@@ -164,19 +164,23 @@
       <label>📞 Contact Number</label>
       <input type="tel" name="contactNumber" required maxlength="10" pattern="[0-9]{10}" title="Enter a 10-digit mobile number">
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. 10 digit numbers only</small>
+
+      <label>📧 Contact Email</label>
+      <input type="tel" name="contactEmail" required maxlength="10" pattern="[0-9]{10}" title="Enter email address of Kind Attn Name">
+      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. xxxxx@gmail.com </small>
       
       <label>🛠️ Equipment Details</label>
       <textarea name="equipment" rows="5" required></textarea>
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. Equipment name | Qty | T&C | Consumables | All the details goes in here </small>
    
-      <label for="cameraBase64_2">📷 capture equipment - optional</label>
+      <label for="cameraBase64_2">📷 Capture required spares / accessories - optional</label>
       <input type="file" id="cameraUpload" name="cameraUpload" accept="image/*" capture="environment">
       <input type="hidden" id="cameraBase64_2" name="cameraBase64_2">
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">Tap to open camera to capture equipment</small>
 
       <div id="imagePreview" style="margin-top:10px;"></div>
 
-      <label>🏢 Special Request - any from the customer</label>
+      <label>🏢 Special Request - if any</label>
       <textarea name="specialRequest" rows="3"></textarea>
 
 <script>
@@ -201,7 +205,7 @@
       <!-- ✅ Centered Submit Button -->
       <div style="text-align: center; margin-top: 20px;">
       <button type="submit" id="submitBtn">
-          <span id="btnText">Submit Lead</span>
+          <span id="btnText">Submit</span>
           <span id="spinner" style="display: none; margin-left: 8px;">⏳</span>
       </button>
 
