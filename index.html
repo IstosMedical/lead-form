@@ -173,6 +173,25 @@
       <label>🏢 Special Request - any from the customer</label>
       <textarea name="specialRequest" rows="3"></textarea>
 
+      <div id="cameraPreview" style="margin-top:10px;"></div>
+      <script>
+  const cameraInput = document.getElementById("cameraUpload");
+  const preview = document.getElementById("cameraPreview");
+
+  cameraInput.addEventListener("change", function () {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        preview.innerHTML = `<img src="${e.target.result}" style="max-width:100%; border:1px solid #ccc; padding:5px;">`;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+</script>
+
+      
+
       <!-- ✅ Centered Submit Button -->
       <div style="text-align: center; margin-top: 20px;">
       <button type="submit" id="submitBtn">
