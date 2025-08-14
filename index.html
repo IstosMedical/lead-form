@@ -178,6 +178,30 @@
       <input type="hidden" id="cameraBase64_2" name="cameraBase64_2">
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">Tap to open camera to capture required spares</small>
 
+      <label for="multiPhotoUpload">📷 Upload Multiple Photos</label>
+      <input type="file" id="multiPhotoUpload" name="multiPhotoUpload" accept="image/*" multiple capture="environment">
+
+      <Script>
+
+        document.getElementById("multiPhotoUpload").addEventListener("change", function () {
+  const files = this.files;
+  const base64Array = [];
+
+  Array.from(files).forEach(file => {
+    const reader = new FileReader();
+    reader.onloadend = function () {
+      base64Array.push(reader.result);
+
+      // Once all files are processed, store them in a hidden field
+      if (base64Array.length === files.length) {
+        document.getElementById("multiPhotoBase64").value = JSON.stringify(base64Array);
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+});
+    </Script>
+      
       <div id="imagePreview" style="margin-top:10px;"></div>
 
       <label>🏢 Special Request - if any</label>
