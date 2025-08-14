@@ -164,7 +164,7 @@
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. Equipment name | Qty | T&C | Consumables | All the details goes in here </small>
    
       <label for="cameraUpload">📷 Capture Equipment Photo</label>
-      <input type="file" id="cameraUpload" name="cameraUpload" accept="image/*" capture="environment" required>
+      <input type="file" id="cameraBase64" name="cameraBase64" accept="image/*" capture="environment" required>
       <small>Tap to open camera and capture photo</small>
       <div id="cameraPreview" style="margin-top:10px;"></div>
       <input type="hidden" id="cameraBase64" name="cameraBase64">
@@ -175,7 +175,7 @@
       <textarea name="specialRequest" rows="3"></textarea>
 
 <script>
-  const cameraInput = document.getElementById("cameraUpload");
+  const cameraInput = document.getElementById("cameraBase64");
   const preview = document.getElementById("cameraPreview");
   const base64Field = document.getElementById("cameraBase64");
 
