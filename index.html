@@ -151,11 +151,21 @@
       <textarea name="address" rows="2" required></textarea>
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. full address with pincode</small>
 
-      <label for="cameraBase64">📷 capture business card - optional</label>
-      <input type="file" id="cameraUpload2" name="cameraUpload2" accept="image/*" capture="environment" >
-      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">Tap to open camera to capture business card</small>
-      <div id="cameraPreview" style="margin-top:10px;"></div>
-      <input type="hidden" id="cameraBase64" name="cameraBase64">
+<input type="file" id="cameraUpload2" name="cameraUpload2" accept="image/*" capture="environment">
+<input type="hidden" id="cameraBase64" name="cameraBase64">
+<input type="file" id="cameraUpload" name="cameraUpload" accept="image/*" capture="environment">
+<input type="hidden" id="cameraBase64_2" name="cameraBase64_2">
+
+      <!-- Business Card Photo -->
+<label for="cameraUpload2">📷 Capture Business Card - optional</label>
+<input type="file" id="cameraUpload2" name="cameraUpload2" accept="image/*" capture="environment">
+<input type="hidden" id="cameraBase64" name="cameraBase64">
+
+<!-- Equipment Photo -->
+<label for="cameraUpload">📷 Capture Equipment Photo - optional</label>
+<input type="file" id="cameraUpload" name="cameraUpload" accept="image/*" capture="environment">
+<input type="hidden" id="cameraBase64_2" name="cameraBase64_2">
+
 
       <label>👷 Kind Attn Name</label>
       <input type="text" name="kindAttnName" required maxlength="100" pattern="[A-Za-z ]{1,50}" title="Enter alphabetic characters only (max 100)">
@@ -268,20 +278,10 @@
   });
 </script>
 
-  <script>
-  document.getElementById("cameraUpload").addEventListener("change", function () {
-    const file = this.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = function () {
-        document.getElementById("cameraBase64").value = reader.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-</script>
-
- <script>
+  <!-- ✅ Camera Script -->
+  
+<script>
+  // Business Card
   document.getElementById("cameraUpload2").addEventListener("change", function () {
     const file = this.files[0];
     if (file) {
@@ -292,6 +292,19 @@
       reader.readAsDataURL(file);
     }
   });
+
+  // Equipment Photo
+  document.getElementById("cameraUpload").addEventListener("change", function () {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = function () {
+        document.getElementById("cameraBase64_2").value = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
 </script>
+
 </body>
 </html>
