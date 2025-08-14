@@ -163,7 +163,7 @@
       <textarea name="equipment" rows="5" required></textarea>
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. Equipment name | Qty | T&C | Consumables | All the details goes in here </small>
    
-      <label for="cameraUpload">📷 Capture Equipment Photo</label>
+      <label for="cameraBase64">📷 Capture Equipment Photo</label>
       <input type="file" id="cameraBase64" name="cameraBase64" accept="image/*" capture="environment" required>
       <small>Tap to open camera and capture photo</small>
       <div id="cameraPreview" style="margin-top:10px;"></div>
@@ -192,6 +192,16 @@
   });
 </script>
 
+document.getElementById("cameraUpload").addEventListener("change", function () {
+  const file = this.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onloadend = function () {
+      document.getElementById("cameraBase64").value = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+});
 
       
 
@@ -263,23 +273,6 @@
     salesEmailSelect.value = nameToEmail[selectedName] || "";
   });
 </script>
-
-<script>
-  const photoInput = document.getElementById("photoLink");
-  const previewContainer = document.getElementById("imagePreview");
-
-photoInput.addEventListener("input", () => {
-  const url = photoInput.value.trim();
-  if (url.includes("whatsapp.com") || url.includes("wa.me")) {
-    previewContainer.innerHTML = `<p>✅ WhatsApp link captured. Image preview not available.</p>`;
-  } else if (url.match(/\.(jpeg|jpg|png|gif)$/)) {
-    previewContainer.innerHTML = `<img src="${url}" alt="Preview" style="max-width:100%; border:1px solid #ccc; padding:5px;">`;
-  } else {
-    previewContainer.innerHTML = "";
-  }
-});
-
-</script>
-  
+ 
 </body>
 </html>
