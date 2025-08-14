@@ -151,10 +151,10 @@
       <textarea name="address" rows="2" required></textarea>
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. full address with pincode</small>
 
+      <label for="cameraBase64">📷 capture business card - optional</label>
       <input type="file" id="cameraUpload2" name="cameraUpload2" accept="image/*" capture="environment">
       <input type="hidden" id="cameraBase64" name="cameraBase64">
-      <input type="file" id="cameraUpload" name="cameraUpload" accept="image/*" capture="environment">
-      <input type="hidden" id="cameraBase64_2" name="cameraBase64_2">
+      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">Tap to open camera to capture business card</small>
 
       <label>👷 Kind Attn Name</label>
       <input type="text" name="kindAttnName" required maxlength="100" pattern="[A-Za-z ]{1,50}" title="Enter alphabetic characters only (max 100)">
@@ -168,6 +168,11 @@
       <textarea name="equipment" rows="5" required></textarea>
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. Equipment name | Qty | T&C | Consumables | All the details goes in here </small>
    
+      <label for="cameraBase64_2">📷 capture equipment - optional</label>
+      <input type="file" id="cameraUpload" name="cameraUpload" accept="image/*" capture="environment">
+      <input type="hidden" id="cameraBase64_2" name="cameraBase64_2">
+      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">Tap to open camera to capture equipment</small>
+
       <div id="imagePreview" style="margin-top:10px;"></div>
 
       <label>🏢 Special Request - any from the customer</label>
