@@ -172,10 +172,8 @@
       <label for="photoLink">📷 Equipment Photo Link (WhatsApp)</label>
       <input type="text" id="photoLink" name="photoLink" placeholder="Paste WhatsApp image link here" required>
       <small>Tip: Open WhatsApp → Tap and hold the image → Select “Copy Link” or “Share” → Paste the link here.</small>
-
-        <form action="https://formspree.io/f/leadForm" method="POST" enctype="multipart/form-data">
-        <label for="file">Upload Image:</label>
-        <input type="file" name="file" id="file" accept="image/*" required>  
+      
+      <div id="imagePreview" style="margin-top:10px;"></div>
 
       <label>🏢 Special Request - any from the customer</label>
       <textarea name="specialRequest" rows="3"></textarea>
@@ -249,6 +247,19 @@
   });
 </script>
 
+<script>
+  const photoInput = document.getElementById("photoLink");
+  const previewContainer = document.getElementById("imagePreview");
+
+  photoInput.addEventListener("input", () => {
+    const url = photoInput.value.trim();
+    if (url && (url.includes("whatsapp.com") || url.includes("wa.me") || url.includes("http"))) {
+      previewContainer.innerHTML = `<img src="${url}" alt="Preview" style="max-width:100%; border:1px solid #ccc; padding:5px;">`;
+    } else {
+      previewContainer.innerHTML = "";
+    }
+  });
+</script>
   
 </body>
 </html>
