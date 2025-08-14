@@ -151,6 +151,12 @@
       <textarea name="address" rows="2" required></textarea>
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. full address with pincode</small>
 
+      <label for="cameraBase64">📷 capture business card - optional</label>
+      <input type="file" id="cameraUpload" name="cameraUpload" accept="image/*" capture="environment" >
+      <small>Tap to open camera and capture business card photo</small>
+      <div id="cameraPreview" style="margin-top:10px;"></div>
+      <input type="hidden" id="cameraBase64" name="cameraBase64">
+
       <label>👷 Kind Attn Name</label>
       <input type="text" name="kindAttnName" required maxlength="100" pattern="[A-Za-z ]{1,50}" title="Enter alphabetic characters only (max 100)">
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. point of contact in the hospital | Laboratory</small>
