@@ -267,6 +267,31 @@
         });
       </script>
 
+  <!-- ✅ Script to handle B-card -->
+  
+  <script>
+  const cameraInput = document.getElementById("cameraUpload");
+  const preview = document.createElement("div");
+  preview.id = "cameraPreview";
+  cameraInput.parentNode.insertBefore(preview, cameraInput.nextSibling);
+
+  const base64Field = document.getElementById("cameraBase64_bcard");
+
+  cameraInput.addEventListener("change", function () {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const base64Image = e.target.result;
+        base64Field.value = JSON.stringify([base64Image]); // ✅ Wrap in array
+        preview.innerHTML = `<img src="${base64Image}" style="max-width:100%; border:1px solid #ccc; padding:5px;">`;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+</script>
+
+  
   <!-- ✅ Script to handle multiple spares or equipments -->
   
   <script>
