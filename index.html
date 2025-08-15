@@ -308,19 +308,36 @@ document.getElementById("cameraUpload2").addEventListener("change", function () 
 </script>
 
 <script>
-  // Business Card
-  document.getElementById("cameraUpload").addEventListener("change", function () {
-    const file = this.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = function () {
-        document.getElementById("cameraBase64").value = reader.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  });
+document.getElementById("cameraUpload").addEventListener("change", function () {
+  const file = this.files[0];
+  if (!file) return;
 
+  if (file.size > 2 * 1024 * 1024) {
+    alert("📷 Please upload smaller images (under 2MB).");
+    return;
+  }
 
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const img = new Image();
+    img.onload = function () {
+      const canvas = document.createElement("canvas");
+      const MAX_WIDTH = 800;
+      const scale = MAX_WIDTH / img.width;
+      canvas.width = MAX_WIDTH;
+      canvas.height = img.height * scale;
+
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      const compressedBase64 = canvas.toDataURL("image/jpeg", 0.7);
+      document.getElementById("cameraBase64").value = compressedBase64;
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+});
 </script>
+
 </body>
 </html>
