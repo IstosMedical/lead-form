@@ -2,90 +2,343 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ISTOS Lead Submission</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISTOS Lead Submission</title>
 
   <!-- android App Settings -->
   <link rel="manifest" href="manifest.json">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- iOS App Settings -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="ISTOS Leads">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ISTOS Leads">
+
+<!-- iOS Splash Screen Icon -->
   <link rel="apple-touch-icon" href="icons/icon-192.jpg">
 
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
-                  url('OLC2.png') no-repeat center center fixed;
-      background-size: cover;
-      text-align: center;
-    }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
+                url('OLC2.png') no-repeat center center fixed;
+    background-size: cover;
+  }
 
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .logo {
+    display: block;
+    margin: 0 auto 30px;
+    max-width: 180px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+  }
+
+  .logo:hover {
+    transform: scale(1.05);
+  }
+
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #34495e;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  button {
+    margin-top: 20px;
+    width: 200px;
+    padding: 10px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  button:hover {
+    background-color: #1c5980;
+    transform: scale(1.03);
+  }
+
+  .success {
+    text-align: center;
+    color: green;
+    margin-top: 15px;
+  }
+
+  .error {
+    text-align: center;
+    color: red;
+    margin-top: 15px;
+  }
+
+  @media screen and (max-width: 600px) {
     .container {
-      max-width: 500px;
-      margin: 80px auto;
-      background: #fff;
-      padding: 40px 30px;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      margin: 10px;
+      padding: 20px;
     }
 
-    .logo {
-      max-width: 160px;
-      margin-bottom: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }
-
-    h2 {
-      color: #2c3e50;
-      margin-bottom: 20px;
-    }
-
-    p {
-      color: #555;
+    input, select, textarea {
       font-size: 16px;
-      margin-bottom: 30px;
     }
 
     button {
-      padding: 12px 24px;
-      font-size: 16px;
-      background-color: #2980b9;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      width: 100%;
     }
+  }
+</style>
 
-    button:hover {
-      background-color: #1c5980;
-      transform: scale(1.05);
-    }
-
-    @media screen and (max-width: 600px) {
-      .container {
-        margin: 40px 20px;
-        padding: 30px 20px;
-      }
-
-      button {
-        width: 100%;
-      }
-    }
-  </style>
 </head>
 <body>
   <div class="container">
     <img src="OLC.png" alt="ISTOS Medical Logo" class="logo">
-    <h2>Welcome to ISTOS Lead Submission</h2>
-    <p>Click below to begin submitting a new Budgetary / Spares Quote.</p>
-    <button onclick="window.location.href='form.html'">🚀 Start Submission</button>
+<h3 style="text-align: center; margin-top: 1; margin-bottom: 20px; color: #3b5998;">Budgetary / Spares Quote</h3>
+
+     
+    <form id="leadForm">
+      <label for="salesPerson">👷 Sales / Service Person</label>
+      <select id="salesPerson" name="engineer" required>
+        <option value="">Select Sales / Service Person</option>
+        <option value="mayuresh">👔 Mayuresh Shrikanth Kadam</option>
+        <option value="naushad">👔 Naushad</option>
+        <option value="nitin">👔 Nitin Yadav</option>
+        <option value="sarfaraz">👔 Sarfaraz Khan</option>
+      </select>
+    
+      <label for="salesEmail">📧 Email</label>
+      <input type="text" id="salesEmail" name="engineerEmail" readonly required placeholder="Auto-filled email">
+   
+      <label>🏥 Institution Name</label>
+      <input type="text" name="institution" required maxlength="250" pattern="[A-Za-z ]{1,50}" title="Enter alphabetic characters only (max 250)">
+      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. Hospital | Laboratory | Healthcare</small>
+
+      <label>🌍 Customer Address</label>
+      <textarea name="address" rows="2" required></textarea>
+      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. full address with pincode</small>
+
+      <label for="cameraBase64">📷 B-card / address photo - optional</label>
+      <input type="file" id="cameraUpload" name="cameraUpload" accept="image/*" capture="environment">
+      <input type="hidden" id="cameraBase64" name="cameraBase64">
+      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">Tap to open camera to capture business card</small>
+
+      <label>👷 Kind Attn Name and Designation</label>
+      <input type="text" name="kindAttnName" required maxlength="100" title="Enter alphabetic characters only (max 100)">
+      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. point of contact in the hospital | Laboratory</small>
+
+      <label>📞 Contact Number</label>
+      <input type="tel" name="contactNumber" required maxlength="10" pattern="[0-9]{10}" title="Enter a 10-digit mobile number">
+      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. 10 digit numbers only</small>
+
+      <label>👷 Contact Email</label>
+      <input type="text" name="Email address" required maxlength="150" title="Enter appropriate email id (max 150)">
+      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. Referring to Kind Attn Name - email id</small>
+      
+      <label>🛠️ Equipment Details</label>
+      <textarea name="equipment" rows="7" required></textarea>
+      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. Equipment name | Qty | T&C | Consumables | All the details goes in here </small>
+   
+      <label for="cameraBase64">📷 Upload spares - optional</label>
+      <input type="file" id="cameraUpload2" accept="image/*" multiple style="display:none">
+      <button type="button" onclick="document.getElementById('cameraUpload2').click()">📷 Open Gallery</button>
+      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">Capture photos using Whatsapp then save it in Gallery - upto 5 photos only</small>
+      <input type="hidden" id="cameraBase64" name="cameraBase64">  
+
+      <label>🏢 Special Request - if any</label>
+      <textarea name="specialRequest" rows="3"></textarea>
+
+<script>
+  const cameraInput = document.getElementById("cameraBase64");
+  const preview = document.getElementById("cameraPreview");
+  const base64Field = document.getElementById("cameraBase64");
+
+  cameraInput.addEventListener("change", function () {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        base64Field.value = e.target.result; // Store base64 string
+        preview.innerHTML = `<img src="${e.target.result}" style="max-width:100%; border:1px solid #ccc; padding:5px;">`;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+</script>
+    
+
+      <!-- ✅ Centered Submit Button -->
+      <div style="text-align: center; margin-top: 20px;">
+      <button type="submit" id="submitBtn">
+          <span id="btnText">Submit</span>
+          <span id="spinner" style="display: none; margin-left: 8px;">⏳</span>
+      </button>
+
+      </div>
+    </form>
+
+    <div id="message"></div>
   </div>
+
+<script>
+  document.getElementById("leadForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const submitBtn = document.getElementById("submitBtn");
+    const btnText = document.getElementById("btnText");
+    const spinner = document.getElementById("spinner");
+
+    submitBtn.disabled = true;
+    btnText.textContent = "Submitting...";
+    spinner.style.display = "inline";
+
+    const formData = new FormData(this);
+    const params = new URLSearchParams();
+    for (const pair of formData.entries()) {
+      params.append(pair[0], pair[1]);
+    }
+
+    fetch("https://script.google.com/macros/s/AKfycbyeQd5CDZyhMsd20AO_aD1K-ps8nu3dGuQ_6ctz6R89L3rss-aZvgSICQ9ZLdNj95jBQg/exec", {
+      method: "POST",
+      body: params
+    })
+    .then(response => response.text())
+    .then(data => {
+      alert("✅ Lead submitted successfully!");
+      window.location.reload();
+      document.getElementById("message").innerHTML = `<div class="success">${data}</div>`;
+      this.reset();
+      submitBtn.disabled = false;
+      btnText.textContent = "Submit Lead";
+      spinner.style.display = "none";
+    })
+    .catch(error => {
+      document.getElementById("message").innerHTML = `<div class="error">❌ Submission failed: ${error}</div>`;
+      submitBtn.disabled = false;
+      btnText.textContent = "Submit Lead";
+      spinner.style.display = "none";
+    });
+  });
+</script>
+
+  <!-- ✅ Automode salesperson name chosen -->
+
+    <script>
+        const nameToEmail = {
+          mayuresh: "mayuresh.kadam@istos.in",
+          naushad: "naushad@istos.in",
+          nitin: "nitin.yadav@istos.in",
+          sarfaraz: "s.khan@istos.in"
+        };
+    
+        document.getElementById("salesPerson").addEventListener("change", function () {
+          const selected = this.value;
+          document.getElementById("salesEmail").value = nameToEmail[selected] || "";
+        });
+      </script>
+
+  <!-- ✅ Camera Script -->
+
+<script>
+function compressAndConvert(file, callback) {
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const img = new Image();
+    img.onload = function () {
+      const canvas = document.createElement("canvas");
+      const MAX_WIDTH = 800;
+      const scale = MAX_WIDTH / img.width;
+      canvas.width = MAX_WIDTH;
+      canvas.height = img.height * scale;
+
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      const compressedBase64 = canvas.toDataURL("image/jpeg", 0.7);
+      callback(compressedBase64);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+document.getElementById("cameraUpload2").addEventListener("change", function () {
+  const files = this.files;
+  const base64Array = [];
+  const hiddenField = document.getElementById("cameraBase64");
+
+  let processed = 0;
+  Array.from(files).forEach(file => {
+    compressAndConvert(file, function (b64) {
+      base64Array.push(b64);
+      processed++;
+      if (processed === files.length) {
+        hiddenField.value = JSON.stringify(base64Array);
+      }
+    });
+  });
+});
+</script>
+
+<script>
+document.getElementById("cameraUpload").addEventListener("change", function () {
+  const file = this.files[0];
+  if (!file) return;
+
+  if (file.size > 2 * 1024 * 1024) {
+    alert("📷 Please upload smaller images (under 2MB).");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const img = new Image();
+    img.onload = function () {
+      const canvas = document.createElement("canvas");
+      const MAX_WIDTH = 800;
+      const scale = MAX_WIDTH / img.width;
+      canvas.width = MAX_WIDTH;
+      canvas.height = img.height * scale;
+
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      const compressedBase64 = canvas.toDataURL("image/jpeg", 0.7);
+      document.getElementById("cameraBase64").value = compressedBase64;
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+});
+</script>
+
 </body>
 </html>
