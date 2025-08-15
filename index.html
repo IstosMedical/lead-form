@@ -167,8 +167,9 @@
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. Equipment name | Qty | T&C | Consumables | All the details goes in here </small>
    
       <label for="cameraBase64">📷 Upload spares - optional</label>
+      <input type="file" accept="image/*" multiple>
       <button onclick="document.getElementById('galleryUpload').click()">📷 Upload from Gallery</button>
-      <input type="file" id="galleryUpload" accept="image/*" style="display:none">
+      <input type="file" id="cameraBase64" accept="image/*" style="display:none">
 
       <label>🏢 Special Request - if any</label>
       <textarea name="specialRequest" rows="3"></textarea>
