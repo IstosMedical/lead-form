@@ -136,13 +136,14 @@
     </select>
     
     <label for="salesEmail">📧 Email</label>
-    <input type="text" id="salesEmail" name="engineerEmail" readonly required>
+    <select id="salesEmail" name="engineerEmail" required disabled>
       <option value="">Automode</option>
-      <option value="mayuresh">mayuresh.kadam@istos.in</option>
-      <option value="naushad">naushad@istos.in</option>
-      <option value="nitin">nitin.yadav@istos.in</option>
-      <option value="s.khan">s.khan@istos.in</option>
+      <option value="mayuresh@istos.in">mayuresh.kadam@istos.in</option>
+      <option value="naushad@istos.in">naushad@istos.in</option>
+      <option value="nitin@istos.in">nitin.yadav@istos.in</option>
+      <option value="sarfaraz@istos.in">s.khan@istos.in</option>
     </select>
+
    
       <label>🏥 Institution Name</label>
       <input type="text" name="institution" required maxlength="250" pattern="[A-Za-z ]{1,50}" title="Enter alphabetic characters only (max 250)">
@@ -273,23 +274,20 @@
 </script>
 
   <!-- ✅ Automode salesperson name chosen -->
-  
-  <script>
+
+  <Script>
   const nameToEmail = {
-    "mayuresh.kada": "mayuresh.kadam@istos.in",
-    "naushad": "naushad@istos.in",
-    "nitin.yadav": "nitin.yadav@istos.in",
-    "sarfaraz": "s.khan@istos.in"
-  };
+  mayuresh: "mayuresh.kadam@istos.in",
+  naushad: "naushad@istos.in",
+  nitin: "nitin.yadav@istos.in",
+  sarfaraz: "s.khan@istos.in"
+};
 
-  const salesPersonSelect = document.getElementById("salesPerson");
-  const salesEmailSelect = document.getElementById("salesEmail");
-
-salesPersonSelect.addEventListener("change", function () {
-  const selectedName = this.value;
-  salesEmailSelect.value = nameToEmail[selectedName] || "";
+document.getElementById("salesPerson").addEventListener("change", function () {
+  const selected = this.value;
+  document.getElementById("salesEmail").value = nameToEmail[selected] || "";
 });
-
+  </Script>
 
   <!-- ✅ Camera Script -->
 
