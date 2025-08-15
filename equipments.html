@@ -166,9 +166,10 @@
       <textarea name="equipment" rows="7" required></textarea>
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. Equipment name | Qty | T&C | Consumables | All the details goes in here </small>
    
-      <label for="cameraBase64">📷 Upload Equipments - optional</label>
-      <input type="file" accept="image/*" multiple>
-      <input type="file" id="cameraBase64" accept="image/*" style="display:none">
+      <label for="cameraBase64">📷 Upload spares - optional</label>
+      <input type="file" id="cameraUpload2" name="cameraUpload2" accept="image/*" multiple>
+      <button onclick="document.getElementById('galleryUpload').click()">Upload from Gallery</button>
+      <input type="hidden" id="cameraBase64" name="cameraBase64">
 
       <label>🏢 Special Request - if any</label>
       <textarea name="specialRequest" rows="3"></textarea>
@@ -277,14 +278,14 @@ function compressAndConvert(file, callback) {
     img.onload = function () {
       const canvas = document.createElement("canvas");
       const MAX_WIDTH = 800;
-      const scaleFactor = MAX_WIDTH / img.width;
+      const scale = MAX_WIDTH / img.width;
       canvas.width = MAX_WIDTH;
-      canvas.height = img.height * scaleFactor;
+      canvas.height = img.height * scale;
 
       const ctx = canvas.getContext("2d");
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-      const compressedBase64 = canvas.toDataURL("image/jpeg", 0.7); // 70% quality
+      const compressedBase64 = canvas.toDataURL("image/jpeg", 0.7);
       callback(compressedBase64);
     };
     img.src = e.target.result;
@@ -292,22 +293,22 @@ function compressAndConvert(file, callback) {
   reader.readAsDataURL(file);
 }
 
-// Apply to all camera inputs
-for (let i = 1; i <= 6; i++) {
-  const fileInput = document.getElementById(`cameraUpload${i}`);
-  const hiddenInput = document.getElementById(`cameraBase64_${i}`);
+document.getElementById("cameraUpload2").addEventListener("change", function () {
+  const files = this.files;
+  const base64Array = [];
+  const hiddenField = document.getElementById("cameraBase64");
 
-  if (fileInput && hiddenInput) {
-    fileInput.addEventListener("change", function () {
-      const file = this.files[0];
-      if (file) {
-        compressAndConvert(file, function (compressedBase64) {
-          hiddenInput.value = compressedBase64;
-        });
+  let processed = 0;
+  Array.from(files).forEach(file => {
+    compressAndConvert(file, function (b64) {
+      base64Array.push(b64);
+      processed++;
+      if (processed === files.length) {
+        hiddenField.value = JSON.stringify(base64Array);
       }
     });
-  }
-}
+  });
+});
 </script>
 
 
