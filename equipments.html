@@ -395,6 +395,44 @@ document.getElementById("cameraUpload").addEventListener("change", function () {
   });
 </script>
 
+  <script>
+  document.getElementById("leadForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const form = event.target;
+    const formData = {
+      engineer: form.engineer.value,
+      engineerEmail: form.engineerEmail.value,
+      institution: form.institution.value,
+      address: form.address.value,
+      kindAttnName: form.kindAttnName.value,
+      contactNumber: form.contactNumber.value,
+      equipment: form.equipment.value,
+      specialRequest: form.specialRequest.value,
+      cameraBase64_bcard: document.getElementById("cameraBase64_bcard").value,
+      cameraBase64_spares: document.getElementById("cameraBase64_spares").value
+    };
+
+    const scriptURL = "https://script.google.com/u/0/home/projects/1pYhfw1uxORHWYlQo-DmXPC3H5bGniNop_E5NmKl-Tj18RgXE3vYLHRav/edit"; // Replace with your actual Apps Script URL
+
+    fetch(scriptURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(response => response.text())
+    .then(result => {
+      alert("✅ Submission successful: " + result);
+    })
+    .catch(error => {
+      console.error("❌ Submission failed:", error);
+      alert("❌ Submission failed. Please try again.");
+    });
+  });
+</script>
+
 
 </body>
 
