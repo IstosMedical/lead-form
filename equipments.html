@@ -166,11 +166,6 @@
       <textarea name="equipment" rows="7" required></textarea>
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. Equipment name | Qty | T&C | Consumables | All the details goes in here </small>
    
-      <label for="cameraBase64">📷 Upload Equipment Photo - optional</label>
-      <input type="file" id="cameraUpload2" name="cameraUpload2" accept="image/*" multiple>
-      <input type="hidden" id="cameraBase64" name="cameraBase64_spares">
-      <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">Ensure less than 6 Equipment photos are uploaded</small>
-
       <label>🏢 Special Request - if any</label>
       <textarea name="specialRequest" rows="3"></textarea>
 
@@ -289,73 +284,6 @@
       reader.readAsDataURL(file);
     }
   });
-</script>
-
-  
-  <!-- ✅ Script to handle multiple spares or equipments -->
-  
-  <script>
-  const sparesInput = document.getElementById("cameraUpload2");
-  const sparesPreview = document.createElement("div");
-  sparesPreview.id = "sparesPreview";
-  sparesInput.parentNode.insertBefore(sparesPreview, sparesInput.nextSibling);
-
-  const sparesBase64Field = document.getElementById("cameraBase64_spares");
-
-  sparesInput.addEventListener("change", function () {
-    const files = Array.from(this.files);
-    const base64Array = [];
-    sparesPreview.innerHTML = ""; // Clear previous previews
-
-    files.forEach((file, index) => {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const base64Image = e.target.result;
-        base64Array.push(base64Image);
-        sparesPreview.innerHTML += `<img src="${base64Image}" style="max-width:100px; margin:5px; border:1px solid #ccc;">`;
-
-        // After last image is loaded, update hidden field
-        if (base64Array.length === files.length) {
-          sparesBase64Field.value = JSON.stringify(base64Array);
-        }
-      };
-      reader.readAsDataURL(file);
-    });
-  });
-</script>
-
-<script>
-  const sparesInput = document.getElementById("cameraUpload2");
-  const sparesPreview = document.createElement("div");
-  sparesPreview.id = "sparesPreview";
-  sparesInput.parentNode.insertBefore(sparesPreview, sparesInput.nextSibling);
-
-  const sparesBase64Field = document.getElementById("cameraBase64_spares"); // ✅ Correct ID
-
-  sparesInput.addEventListener("change", function () {
-    const files = Array.from(this.files);
-    const base64Array = [];
-    sparesPreview.innerHTML = "";
-
-    let loadedCount = 0;
-
-    files.forEach((file, index) => {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const base64Image = e.target.result;
-        base64Array[index] = base64Image;
-        sparesPreview.innerHTML += `<img src="${base64Image}" style="max-width:100px; margin:5px; border:1px solid #ccc;">`;
-
-        loadedCount++;
-        if (loadedCount === files.length) {
-          sparesBase64Field.value = JSON.stringify(base64Array); // ✅ Correct field
-        }
-      };
-      reader.readAsDataURL(file);
-    });
-  });
-</script>
-
-  
+</script>   
 </body>
 </html>
