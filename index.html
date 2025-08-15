@@ -136,7 +136,7 @@
     </select>
     
     <label for="salesEmail">📧 Email</label>
-    <select id="salesEmail" name="engineerEmail" required disabled>
+    <input type="text" id="salesEmail" name="engineerEmail" readonly required>
       <option value="">Automode</option>
       <option value="mayuresh@istos.in">mayuresh.kadam@istos.in</option>
       <option value="naushad@istos.in">naushad@istos.in</option>
@@ -272,6 +272,8 @@
   });
 </script>
 
+  <!-- ✅ Automode salesperson name chosen -->
+  
   <script>
   const nameToEmail = {
     "mayuresh": "mayuresh.kadam@istos.in",
@@ -283,11 +285,11 @@
   const salesPersonSelect = document.getElementById("salesPerson");
   const salesEmailSelect = document.getElementById("salesEmail");
 
-  salesPersonSelect.addEventListener("change", function () {
-    const selectedName = this.value;
-    salesEmailSelect.value = nameToEmail[selectedName] || "";
-  });
-</script>
+salesPersonSelect.addEventListener("change", function () {
+  const selectedName = this.value;
+  salesEmailSelect.value = nameToEmail[selectedName] || "";
+});
+
 
   <!-- ✅ Camera Script -->
 
