@@ -395,6 +395,37 @@ document.getElementById("cameraUpload").addEventListener("change", function () {
   });
 </script>
 
+  <script>
+  document.getElementById("cameraUpload").addEventListener("change", function () {
+    const file = this.files[0];
+    if (!file) return;
+
+    const img = new Image();
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      img.src = e.target.result;
+    };
+
+    img.onload = function () {
+      const canvas = document.createElement("canvas");
+      const maxWidth = 800; // Resize width
+      const scale = maxWidth / img.width;
+      canvas.width = maxWidth;
+      canvas.height = img.height * scale;
+
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      const resizedBase64 = canvas.toDataURL("image/jpeg", 0.7); // Compress quality
+      const base64String = resizedBase64.split(",")[1];
+      document.getElementById("cameraBase64").value = JSON.stringify([base64String]);
+    };
+
+    reader.readAsDataURL(file);
+  });
+</script>
+
 </body>
 
 </body>
