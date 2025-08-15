@@ -283,25 +283,52 @@
 
   <!-- ✅ Camera Script -->
 
-  <script>
-  for (let i = 2; i <= 10; i++) {
-    const fileInput = document.getElementById(`cameraUpload${i}`);
-    const hiddenInput = document.getElementById(`cameraBase64_${i}`);
-
-    if (fileInput && hiddenInput) {
-      fileInput.addEventListener("change", function () {
-        const file = this.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            hiddenInput.value = e.target.result;
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-    }
+<script>
+function compressAndConvert(file, callback) {
+  if (file.size > 2 * 1024 * 1024) {
+    alert("📷 Please upload smaller images (under 2MB).");
+    return;
   }
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const img = new Image();
+    img.onload = function () {
+      const canvas = document.createElement("canvas");
+      const MAX_WIDTH = 800;
+      const scaleFactor = MAX_WIDTH / img.width;
+      canvas.width = MAX_WIDTH;
+      canvas.height = img.height * scaleFactor;
+
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      const compressedBase64 = canvas.toDataURL("image/jpeg", 0.7); // 70% quality
+      callback(compressedBase64);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+// Apply to all camera inputs
+for (let i = 1; i <= 6; i++) {
+  const fileInput = document.getElementById(`cameraUpload${i}`);
+  const hiddenInput = document.getElementById(`cameraBase64_${i}`);
+
+  if (fileInput && hiddenInput) {
+    fileInput.addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        compressAndConvert(file, function (compressedBase64) {
+          hiddenInput.value = compressedBase64;
+        });
+      }
+    });
+  }
+}
 </script>
+
 
 <script>
   // Business Card
