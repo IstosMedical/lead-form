@@ -330,12 +330,12 @@
   sparesPreview.id = "sparesPreview";
   sparesInput.parentNode.insertBefore(sparesPreview, sparesInput.nextSibling);
 
-  const sparesBase64Field = document.getElementById("cameraBase64");
+  const sparesBase64Field = document.getElementById("cameraBase64_spares"); // ✅ Correct ID
 
   sparesInput.addEventListener("change", function () {
     const files = Array.from(this.files);
     const base64Array = [];
-    sparesPreview.innerHTML = ""; // Clear previous previews
+    sparesPreview.innerHTML = "";
 
     let loadedCount = 0;
 
@@ -348,13 +348,14 @@
 
         loadedCount++;
         if (loadedCount === files.length) {
-          sparesBase64Field.value = JSON.stringify(base64Array);
+          sparesBase64Field.value = JSON.stringify(base64Array); // ✅ Correct field
         }
       };
       reader.readAsDataURL(file);
     });
   });
 </script>
+
   
 </body>
 </html>
