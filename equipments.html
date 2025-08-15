@@ -122,7 +122,7 @@
 <body>
   <div class="container">
     <img src="OLC.png" alt="ISTOS Medical Logo" class="logo">
-<h3 style="text-align: center; margin-top: 1; margin-bottom: 20px; color: #3b5998;">Budgetary / Spares Quote</h3>
+<h3 style="text-align: center; margin-top: 1; margin-bottom: 20px; color: #3b5998;">Budgetary / Equipment Quote</h3>
      
     <form id="leadForm">
       <label for="salesPerson">👷 Sales / Service Person</label>
@@ -146,8 +146,8 @@
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. full address with pincode</small>
 
       <label for="cameraBase64">📷 B-card / address photo - optional</label>
-      <input type="file" id="cameraUpload" name="cameraUpload" accept="image/*" capture="environment">
-      <input type="hidden" id="cameraBase64" name="cameraBase64">
+      <input type="file" id="cameraUpload_bcard" name="cameraUpload_bcard" accept="image/*" capture="environment">
+      <input type="hidden" id="cameraBase64_bcard" name="cameraBase64_bcard">
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">Tap to open camera to capture business card</small>
 
       <label>👷 Kind Attn Name and Designation</label>
@@ -166,11 +166,11 @@
       <textarea name="equipment" rows="7" required></textarea>
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. Equipment name | Qty | T&C | Consumables | All the details goes in here </small>
    
-      <label for="cameraBase64">📷 Upload spares - optional</label>
-      <input type="file" accept="image/*" multiple>
+      <label for="cameraBase64">📷 Upload equipment - optional</label>
       <button onclick="document.getElementById('galleryUpload').click()">Upload from Gallery</button>
-      <input type="file" id="cameraBase64" accept="image/*" style="display:none">
-
+      <input type="file" id="cameraUpload_spares" name="cameraUpload_spares" accept="image/*" multiple>
+      <input type="hidden" id="cameraBase64_spares" name="cameraBase64_spares">
+      
       <label>🏢 Special Request - if any</label>
       <textarea name="specialRequest" rows="3"></textarea>
 
@@ -271,7 +271,6 @@ function compressAndConvert(file, callback) {
     alert("📷 Please upload smaller images (under 2MB).");
     return;
   }
-
   const reader = new FileReader();
   reader.onload = function (e) {
     const img = new Image();
@@ -281,11 +280,9 @@ function compressAndConvert(file, callback) {
       const scaleFactor = MAX_WIDTH / img.width;
       canvas.width = MAX_WIDTH;
       canvas.height = img.height * scaleFactor;
-
       const ctx = canvas.getContext("2d");
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-      const compressedBase64 = canvas.toDataURL("image/jpeg", 0.7); // 70% quality
+      const compressedBase64 = canvas.toDataURL("image/jpeg", 0.7);
       callback(compressedBase64);
     };
     img.src = e.target.result;
@@ -293,39 +290,33 @@ function compressAndConvert(file, callback) {
   reader.readAsDataURL(file);
 }
 
-// Apply to all camera inputs
-for (let i = 1; i <= 6; i++) {
-  const fileInput = document.getElementById(`cameraUpload${i}`);
-  const hiddenInput = document.getElementById(`cameraBase64_${i}`);
+// Business Card
+document.getElementById("cameraUpload_bcard").addEventListener("change", function () {
+  const file = this.files[0];
+  if (file) {
+    compressAndConvert(file, function (compressedBase64) {
+      document.getElementById("cameraBase64_bcard").value = JSON.stringify([compressedBase64]);
+    });
+  }
+});
 
-  if (fileInput && hiddenInput) {
-    fileInput.addEventListener("change", function () {
-      const file = this.files[0];
-      if (file) {
-        compressAndConvert(file, function (compressedBase64) {
-          hiddenInput.value = compressedBase64;
-        });
+// Spares Upload
+document.getElementById("cameraUpload_spares").addEventListener("change", function () {
+  const files = this.files;
+  const base64Array = [];
+  let processed = 0;
+
+  for (let i = 0; i < files.length; i++) {
+    compressAndConvert(files[i], function (compressedBase64) {
+      base64Array.push(compressedBase64);
+      processed++;
+      if (processed === files.length) {
+        document.getElementById("cameraBase64_spares").value = JSON.stringify(base64Array);
       }
     });
   }
-}
+});
 </script>
 
-
-<script>
-  // Business Card
-  document.getElementById("cameraUpload").addEventListener("change", function () {
-    const file = this.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = function () {
-        document.getElementById("cameraBase64").value = reader.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
-
-</script>
 </body>
 </html>
