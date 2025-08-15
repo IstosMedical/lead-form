@@ -206,7 +206,16 @@
     <div id="message"></div>
   </div>
 
-<script>
+  <script>
+document.getElementById("leadForm").addEventListener("submit", function (e) {
+  const buttonClicked = document.activeElement;
+  if (buttonClicked && buttonClicked.innerText.includes("Upload from Gallery")) {
+    e.preventDefault(); // Stop form from submitting
+  }
+});
+</script>
+
+  <script>
   document.getElementById("leadForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
