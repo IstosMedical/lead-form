@@ -268,11 +268,6 @@
 
 <script>
 function compressAndConvert(file, callback) {
-  if (file.size > 2 * 1024 * 1024) {
-    alert("📷 Please upload smaller images (under 2MB).");
-    return;
-  }
-
   const reader = new FileReader();
   reader.onload = function (e) {
     const img = new Image();
@@ -311,7 +306,6 @@ document.getElementById("cameraUpload2").addEventListener("change", function () 
   });
 });
 </script>
-
 
 <script>
   // Business Card
