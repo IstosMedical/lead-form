@@ -2,93 +2,127 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ISTOS Lead Submission</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISTOS Lead Submission</title>
 
   <!-- android App Settings -->
   <link rel="manifest" href="manifest.json">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- iOS App Settings -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="ISTOS Leads">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ISTOS Leads">
+
+<!-- iOS Splash Screen Icon -->
   <link rel="apple-touch-icon" href="icons/icon-192.jpg">
 
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
-                  url('OLC2.png') no-repeat center center fixed;
-      background-size: cover;
-      text-align: center;
-    }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
+                url('OLC2.png') no-repeat center center fixed;
+    background-size: cover;
+  }
 
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .logo {
+    display: block;
+    margin: 0 auto 30px;
+    max-width: 180px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+  }
+
+  .logo:hover {
+    transform: scale(1.05);
+  }
+
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #34495e;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  button {
+    margin-top: 20px;
+    width: 200px;
+    padding: 10px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  button:hover {
+    background-color: #1c5980;
+    transform: scale(1.03);
+  }
+
+  .success {
+    text-align: center;
+    color: green;
+    margin-top: 15px;
+  }
+
+  .error {
+    text-align: center;
+    color: red;
+    margin-top: 15px;
+  }
+
+  @media screen and (max-width: 600px) {
     .container {
-      max-width: 500px;
-      margin: 80px auto;
-      background: #fff;
-      padding: 40px 30px;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      margin: 10px;
+      padding: 20px;
     }
 
-    .logo {
-      max-width: 160px;
-      margin-bottom: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }
-
-    h2 {
-      color: #2c3e50;
-      margin-bottom: 20px;
-    }
-
-    p {
-      color: #555;
+    input, select, textarea {
       font-size: 16px;
-      margin-bottom: 30px;
     }
 
     button {
-      padding: 12px 24px;
-      font-size: 16px;
-      background-color: #2980b9;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      width: 100%;
     }
+  }
+</style>
 
-    button:hover {
-      background-color: #1c5980;
-      transform: scale(1.05);
-    }
-
-    @media screen and (max-width: 600px) {
-      .container {
-        margin: 40px 20px;
-        padding: 30px 20px;
-      }
-
-      button {
-        width: 100%;
-      }
-    }
-  </style>
 </head>
 <body>
   <div class="container">
     <img src="OLC.png" alt="ISTOS Medical Logo" class="logo">
-    <h2>Welcome to ISTOS Lead Submission</h2>
-    <p>Click below to begin submitting a new Budgetary / Spares Quote.</p>
-    <button onclick="window.location.href='form.html'">🚀 Start Submission</button>
-  </div>
-</body>
-</html>
+<h3 style="text-align: center; margin-top: 1; margin-bottom: 20px; color: #3b5998;">Budgetary / Spares Quote</h3>
 
      
     <form id="leadForm">
