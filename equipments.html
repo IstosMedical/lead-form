@@ -147,7 +147,7 @@
 
       <label for="cameraBase64">📷 B-card / address photo - optional</label>
       <input type="file" id="cameraUpload" name="cameraUpload" accept="image/*" capture="environment">
-      <input type="hidden" id="cameraBase64" name="cameraBase64">
+      <input type="hidden" name="cameraBase64_bcard" id="cameraBase64_bcard">
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">Tap to open camera to capture business card</small>
 
       <label>👷 Kind Attn Name and Designation</label>
@@ -168,29 +168,33 @@
    
       <label for="cameraBase64">📷 Upload spares - optional</label>
       <input type="file" id="cameraUpload2" name="cameraUpload2" accept="image/*" multiple>
-      <button onclick="document.getElementById('galleryUpload').click()">Upload from Gallery</button>
       <input type="hidden" id="cameraBase64" name="cameraBase64">
 
       <label>🏢 Special Request - if any</label>
       <textarea name="specialRequest" rows="3"></textarea>
 
 <script>
-  const cameraInput = document.getElementById("cameraBase64");
-  const preview = document.getElementById("cameraPreview");
-  const base64Field = document.getElementById("cameraBase64");
+  const cameraInput = document.getElementById("cameraUpload");
+  const preview = document.createElement("div");
+  preview.id = "cameraPreview";
+  cameraInput.parentNode.insertBefore(preview, cameraInput.nextSibling);
+
+  const base64Field = document.getElementById("cameraBase64_bcard");
 
   cameraInput.addEventListener("change", function () {
     const file = this.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = function (e) {
-        base64Field.value = e.target.result; // Store base64 string
-        preview.innerHTML = `<img src="${e.target.result}" style="max-width:100%; border:1px solid #ccc; padding:5px;">`;
+        const base64Image = e.target.result; // includes data:image/jpeg;base64,...
+        base64Field.value = JSON.stringify([base64Image]); // wrap in array for backend
+        preview.innerHTML = `<img src="${base64Image}" style="max-width:100%; border:1px solid #ccc; padding:5px;">`;
       };
       reader.readAsDataURL(file);
     }
   });
 </script>
+
     
 
       <!-- ✅ Centered Submit Button -->
