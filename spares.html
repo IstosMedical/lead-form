@@ -135,6 +135,7 @@
 
       <label for="salesPerson">👷 Sales / Service Person</label>
       <select id="salesPerson" name="engineer" required>
+        <select name="engineer">
         <option value="">Select Sales / Service Person</option>
         <option value="mayuresh">👔 Mayuresh Shrikanth Kadam</option>
         <option value="naushad">👔 Naushad</option>
@@ -144,7 +145,7 @@
       </select>
     
       <label for="salesEmail">📧 Email</label>
-      <input type="text" id="salesEmail" name="engineerEmail" readonly required placeholder="Auto-filled email">
+      <input type="email" id="salesEmail" name="engineerEmail" readonly placeholder="Auto-filled email">
    
       <label>🏥 Institution Name</label>
       <input type="text" name="institution" required maxlength="250" pattern="[A-Za-z ]{1,50}" title="Enter alphabetic characters only (max 250)">
