@@ -122,9 +122,17 @@
 <body>
   <div class="container">
     <img src="OLC.png" alt="ISTOS Medical Logo" class="logo">
-<h3 style="text-align: center; margin-top: 1; margin-bottom: 20px; color: #3b5998;">Budgetary / Spares Quote</h3>
+
+<!-- Title and Date with Line Gap -->
+<!-- Date Block with No Wrapping -->
+<div style="display: flex; justify-content: flex-end; margin-top: 4px;">
+  <div style="font-size: 14px; color: #333; white-space: nowrap;">
+    🗓️ Date: <span id="currentDate">16 Aug 2025</span>
+  </div>
+</div>
      
     <form id="leadForm">
+      <h3 style="text-align: center; margin-top: 1; margin-bottom: 20px; color: #3b5998;">Budgetary / Spares Quote</h3>
       <label for="salesPerson">👷 Sales / Service Person</label>
       <select id="salesPerson" name="engineer" required>
         <option value="">Select Sales / Service Person</option>
