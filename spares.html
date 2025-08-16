@@ -323,5 +323,18 @@
   });
 </script>
 
+  <!-- ✅ Script for the timestamp -->
+  
+  <script>
+  const dateField = document.getElementById("currentDate");
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-IN", {
+    year: "numeric",
+    month: "short",
+    day: "numeric"
+  });
+  dateField.value = formattedDate;
+</script>
+  
 </body>
 </html>
