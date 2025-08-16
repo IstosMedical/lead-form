@@ -8,6 +8,8 @@
   <!-- android App Settings -->
   <link rel="manifest" href="manifest.json">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<form action="submit.php" method="POST" enctype="multipart/form-data">
+
 
   <!-- iOS App Settings -->
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -146,8 +148,7 @@
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. full address with pincode</small>
 
       <label>🪪 Upload B-Card Photo</label>
-      <input type="file" id="cameraUpload_bcard" accept="image/*">
-      <input type="hidden" id="cameraBase64_bcard" name="cameraBase64_bcard">
+      <input type="file" id="cameraUpload_bcard" name="bcard" accept="image/*" capture="environment">  
       <div id="bcardPreview" style="margin-top:10px;"></div>
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">Tap to open camera to capture business card</small>
 
