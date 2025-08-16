@@ -165,8 +165,14 @@
       <label>🏥 Spares Details</label>
       <textarea name="spares" rows="7" required></textarea>
       <small style="color: grey; display: block; margin-top: 6px; margin-bottom: 10px;">e.g. Spares name | Qty | All the details goes in here </small>
-   
-      <label>🏢 Special Request - if any</label>
+
+      <label>📷 Upload Spares Photos</label>
+      <input type="file" id="cameraUpload_spares" accept="image/*" multiple>
+      <input type="hidden" id="cameraBase64_spares" name="cameraBase64_spares">
+      <div id="sparesPreview" style="margin-top:10px;"></div>
+      <small style="color: grey;">Select multiple images from gallery</small>
+
+         <label>🏢 Special Request - if any</label>
       <textarea name="specialRequest" rows="3"></textarea>
 
 <script>
@@ -284,6 +290,38 @@
       reader.readAsDataURL(file);
     }
   });
-</script>   
+</script>
+
+  <!-- ✅ Script to handle multiple photo load -->
+  
+<script>
+  const sparesInput = document.getElementById("cameraUpload_spares");
+  const sparesPreview = document.getElementById("sparesPreview");
+  const sparesBase64Field = document.getElementById("cameraBase64_spares");
+
+  sparesInput.addEventListener("change", function () {
+    const files = Array.from(this.files);
+    const base64Array = [];
+    sparesPreview.innerHTML = "";
+
+    let processed = 0;
+
+    files.forEach((file, index) => {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const base64Image = e.target.result;
+        base64Array.push(base64Image);
+        sparesPreview.innerHTML += `<img src="${base64Image}" style="max-width:100px; margin:5px; border:1px solid #ccc;">`;
+
+        processed++;
+        if (processed === files.length) {
+          sparesBase64Field.value = JSON.stringify(base64Array);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+</script>
+
 </body>
 </html>
