@@ -134,7 +134,8 @@
       <h3 style="text-align: center; margin-top: 1; margin-bottom: 20px; color: #3b5998;">Budgetary / Equipment Quote</h3>
 
       <label for="salesPerson">👷 Sales / Service Person</label>
-      <select name="engineer">
+      <select name="engineer" required>
+        <option value="" disabled selected>Select Person</option>
         <option value="naushad">Naushad</option>
         <option value="mayuresh">Mayuresh</option>
         <option value="nitin">Nitin</option>
@@ -277,6 +278,25 @@
         });
       </script>
 
+  <script>
+  const personSelect = document.querySelector('select[name="engineer"]');
+  const emailField = document.querySelector('input[name="engineerEmail"]');
+
+  const emailMap = {
+    naushad: 'naushad@istos.in',
+    mayuresh: 'mayuresh@istos.in',
+    nitin: 'nitin@istos.in',
+    sarfaraz: 'sarfaraz@istos.in'
+    mazhar: 'talktous@istos.in'
+  };
+
+  personSelect.addEventListener('change', function () {
+    const selected = this.value.trim().toLowerCase();
+    emailField.value = emailMap[selected] || '';
+  });
+  </script>
+
+      
   <!-- ✅ Script to handle B-card -->
   
   <script>
