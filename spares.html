@@ -337,7 +337,7 @@
     reader.onload = function (e) {
       const base64Image = e.target.result;
       bcardPreview.innerHTML = `<img src="${base64Image}" style="max-width:100px; margin:5px; border:1px solid #ccc;">`;
-      bcardBase64Field.value = base64Image;
+      bcardBase64Field.value = JSON.stringify([base64Image]);
     };
     reader.readAsDataURL(file);
   });
