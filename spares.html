@@ -263,38 +263,20 @@
 
   <!-- ✅ Automode salesperson name chosen -->
 
-    <script>
-        const nameToEmail = {
-          mayuresh: "mayuresh.kadam@istos.in",
-          naushad: "naushad@istos.in",
-          nitin: "nitin.yadav@istos.in",
-          sarfaraz: "s.khan@istos.in"
-          mazhar: "talktous@istos.in"
-        };
-    
-        document.getElementById("salesPerson").addEventListener("change", function () {
-          const selected = this.value;
-          document.getElementById("salesEmail").value = nameToEmail[selected] || "";
-        });
-      </script>
-
   <script>
-  const personSelect = document.querySelector('select[name="engineer"]');
-  const emailField = document.querySelector('input[name="engineerEmail"]');
-
-  const emailMap = {
-    naushad: 'naushad@istos.in',
-    mayuresh: 'mayuresh@istos.in',
-    nitin: 'nitin@istos.in',
-    sarfaraz: 'sarfaraz@istos.in'
-    mazhar: 'talktous@istos.in'
+  const nameToEmail = {
+    mayuresh: "mayuresh.kadam@istos.in",
+    naushad: "naushad@istos.in",
+    nitin: "nitin.yadav@istos.in",
+    sarfaraz: "s.khan@istos.in",
+    mazhar: "talktous@istos.in"
   };
 
-  personSelect.addEventListener('change', function () {
-    const selected = this.value.trim().toLowerCase();
-    emailField.value = emailMap[selected] || '';
+  document.querySelector('select[name="engineer"]').addEventListener("change", function () {
+    const selected = this.value;
+    document.getElementById("salesEmail").value = nameToEmail[selected] || "";
   });
-  </script>
+</script>
 
       
   <!-- ✅ Script to handle B-card -->
