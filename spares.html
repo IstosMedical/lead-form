@@ -122,9 +122,15 @@
 <body>
   <div class="container">
     <img src="OLC.png" alt="ISTOS Medical Logo" class="logo">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-    <input type="text" id="currentDate" readonly style="border: none; background-color: #f0f0f0; color: grey; font-size: 14px; padding: 5px; width: auto;">
-    <h3 style="text-align: center color: #3b5998;">Budgetary / Spares Quote</h3>
+
+    <!-- Date Stamp Below Logo -->
+<div style="margin-top: 10px; margin-bottom: 10px;">
+  <input type="text" id="currentDate" readonly
+    style="border: none; background-color: #f0f0f0; color: #555; font-size: 14px; padding: 4px 8px; width: auto;">
+</div>
+
+<!-- Form Title -->
+<h2 style="margin-top: 0;">Budgetary / Spares Quote</h2>
 </div>
 
      
@@ -327,5 +333,19 @@
   });
 </script>
 
+   <!-- ✅ Script for the timestamp -->
+  
+  <script>
+  const dateField = document.getElementById("currentDate");
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-IN", {
+    year: "numeric",
+    month: "short",
+    day: "numeric"
+  });
+  dateField.value = formattedDate;
+</script>
+
+  
 </body>
 </html>
