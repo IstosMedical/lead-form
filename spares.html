@@ -117,34 +117,25 @@
     }
   }
 </style>
+
 </head>
 <body>
   <div class="container">
     <img src="OLC.png" alt="ISTOS Medical Logo" class="logo">
-
-<!-- Title and Date with Line Gap -->
-<!-- Date Block with No Wrapping -->
-<div style="display: flex; justify-content: flex-end; margin-top: 4px;">
-  <div style="font-size: 14px; color: #333; white-space: nowrap;">
-    🗓️ Date: <span id="currentDate">16 Aug 2025</span>
-  </div>
-</div>
+<h3 style="text-align: center; margin-top: 1; margin-bottom: 20px; color: #3b5998;">Budgetary / Spares Quote</h3>
      
     <form id="leadForm">
-      <h3 style="text-align: center; margin-top: 1; margin-bottom: 20px; color: #3b5998;">Budgetary / Spares Quote</h3>
-
       <label for="salesPerson">👷 Sales / Service Person</label>
-      <select name="engineer" required>
-        <option value="" disabled selected>Select Person</option>
-        <option value="naushad">Naushad</option>
-        <option value="mayuresh">Mayuresh</option>
-        <option value="nitin">Nitin</option>
-        <option value="sarfaraz">Sarfaraz</option>
-        <option value="mazhar">Mazhar</option>
+      <select id="salesPerson" name="engineer" required>
+        <option value="">Select Sales / Service Person</option>
+        <option value="mayuresh">👔 Mayuresh Shrikanth Kadam</option>
+        <option value="naushad">👔 Naushad</option>
+        <option value="nitin">👔 Nitin Yadav</option>
+        <option value="sarfaraz">👔 Sarfaraz Khan</option>
       </select>
     
       <label for="salesEmail">📧 Email</label>
-      <input type="email" id="salesEmail" name="engineerEmail" readonly placeholder="Auto-filled email">
+      <input type="text" id="salesEmail" name="engineerEmail" readonly required placeholder="Auto-filled email">
    
       <label>🏥 Institution Name</label>
       <input type="text" name="institution" required maxlength="250" pattern="[A-Za-z ]{1,50}" title="Enter alphabetic characters only (max 250)">
@@ -179,7 +170,7 @@
       <input type="file" id="cameraUpload_spares" accept="image/*" multiple>
       <input type="hidden" id="cameraBase64_spares" name="cameraBase64_spares">
       <div id="sparesPreview" style="margin-top:10px;"></div>
-      <small style="color: grey;">Load from gallery - limit less than 6 photos</small>
+      <small style="color: grey;">Select multiple images from gallery</small>
 
          <label>🏢 Special Request - if any</label>
       <textarea name="specialRequest" rows="3"></textarea>
@@ -263,22 +254,20 @@
 
   <!-- ✅ Automode salesperson name chosen -->
 
-  <script>
-  const nameToEmail = {
-    mayuresh: "mayuresh.kadam@istos.in",
-    naushad: "naushad@istos.in",
-    nitin: "nitin.yadav@istos.in",
-    sarfaraz: "s.khan@istos.in",
-    mazhar: "talktous@istos.in"
-  };
+    <script>
+        const nameToEmail = {
+          mayuresh: "mayuresh.kadam@istos.in",
+          naushad: "naushad@istos.in",
+          nitin: "nitin.yadav@istos.in",
+          sarfaraz: "s.khan@istos.in"
+        };
+    
+        document.getElementById("salesPerson").addEventListener("change", function () {
+          const selected = this.value;
+          document.getElementById("salesEmail").value = nameToEmail[selected] || "";
+        });
+      </script>
 
-  document.querySelector('select[name="engineer"]').addEventListener("change", function () {
-    const selected = this.value;
-    document.getElementById("salesEmail").value = nameToEmail[selected] || "";
-  });
-</script>
-
-      
   <!-- ✅ Script to handle B-card -->
   
   <script>
@@ -334,18 +323,5 @@
   });
 </script>
 
-   <!-- ✅ Script for the timestamp -->
-  
-  <script>
-  const dateField = document.getElementById("currentDate");
-  const today = new Date();
-  const formattedDate = today.toLocaleDateString("en-IN", {
-    year: "numeric",
-    month: "short",
-    day: "numeric"
-  });
-  dateField.value = formattedDate;
-</script>
- 
 </body>
 </html>
