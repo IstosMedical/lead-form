@@ -123,14 +123,10 @@
   <div class="container">
     <img src="OLC.png" alt="ISTOS Medical Logo" class="logo">
 
-<!-- Form Title -->
-<h3 style="text-align: center; margin-bottom: 6px;">Budgetary / Equipments Quote</h3>
-
-<!-- Top-Right Aligned Date Stamp -->
-<div style="position: absolute; top: 10px; right: 20px; display: flex; align-items: baseline;">
-  <label for="currentDate" style="font-size: 14px; color: #333; margin-right: 4px;">🗓️ Date:</label>
-  <input type="text" id="currentDate" readonly
-    style="border: none; background: none; color: #555; font-size: 14px; padding: 0; margin: 0; line-height: 1;">
+<!-- Title and Date on Same Line -->
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+  <div style="font-size: 18px; font-weight: bold;">Budgetary / Equipments Quote</div>
+  <div style="font-size: 14px; color: #333;">🗓️ Date: <span id="currentDate">16 Aug 2025</span></div>
 </div>
      
     <form id="leadForm">
