@@ -333,15 +333,11 @@
 
   <!-- ✅ Script for the timestamp -->
   
-  <script>
-  const dateField = document.getElementById("currentDate");
+<script>
   const today = new Date();
-  const formattedDate = today.toLocaleDateString("en-IN", {
-    year: "numeric",
-    month: "short",
-    day: "numeric"
-  });
-  dateField.value = formattedDate;
+  const options = { day: '2-digit', month: 'short', year: 'numeric' };
+  const formattedDate = today.toLocaleDateString('en-GB', options);
+  document.getElementById("currentDate").textContent = formattedDate;
 </script>
   
 </body>
