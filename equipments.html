@@ -257,20 +257,27 @@
 
   <!-- ✅ Automode salesperson name chosen -->
 
-    <script>
-        const nameToEmail = {
-          mayuresh: "mayuresh.kadam@istos.in",
-          naushad: "naushad@istos.in",
-          nitin: "nitin.yadav@istos.in",
-          sarfaraz: "s.khan@istos.in"
-          mazhar: "rabbanimecci@gmail.com"
-        };
-    
-        document.getElementById("salesPerson").addEventListener("change", function () {
+  <script>
+    const nameToEmail = {
+      mayuresh: "mayuresh.kadam@istos.in",
+      naushad: "naushad@istos.in",
+      nitin: "nitin.yadav@istos.in",
+      sarfaraz: "s.khan@istos.in",
+      mazhar: "rabbanimecci@gmail.com" // ✅ Your new entry
+    };
+  
+    document.addEventListener("DOMContentLoaded", function () {
+      const dropdown = document.getElementById("salesPerson");
+      const emailField = document.getElementById("salesEmail");
+  
+      if (dropdown && emailField) {
+        dropdown.addEventListener("change", function () {
           const selected = this.value;
-          document.getElementById("salesEmail").value = nameToEmail[selected] || "";
+          emailField.value = nameToEmail[selected] || "";
         });
-      </script>
+      }
+    });
+  </script>
 
   <!-- ✅ Script to handle B-card -->
   
