@@ -1,6 +1,6 @@
 {
   "name": "ISTOS Lead Submission",
-  "short_name": "ISTOS Quotes",
+  "short_name": "iQuotes",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
